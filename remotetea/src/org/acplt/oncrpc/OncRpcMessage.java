@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcMessage.java,v 1.1 2003/08/13 12:03:41 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcMessage.java,v 1.2 2003/08/14 07:56:37 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -24,8 +24,6 @@
 
 package org.acplt.oncrpc;
 
-import java.io.IOException;
-
 /**
  * The <code>OncRpcMessage</code> class is an abstract superclass for all
  * the message types ONC/RPC defines (well, an overwhelming count of two).
@@ -33,7 +31,7 @@ import java.io.IOException;
  * and the message type. All other things do not come in until derived
  * classes are introduced.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:41 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 07:56:37 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcMessage {

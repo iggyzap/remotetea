@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jportmap/OncRpcEmbeddedPortmap.java,v 1.1 2003/08/13 12:03:45 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jportmap/OncRpcEmbeddedPortmap.java,v 1.2 2003/08/14 08:00:08 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -26,9 +26,6 @@ package org.acplt.oncrpc.apps.jportmap;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Vector;
-
 import org.acplt.oncrpc.*;
 import org.acplt.oncrpc.server.*;
 
@@ -39,7 +36,7 @@ import org.acplt.oncrpc.server.*;
  * If an embedded portmap service is started it will stop only after the
  * last ONC/RPC program has been deregistered.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:45 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 08:00:08 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcEmbeddedPortmap {

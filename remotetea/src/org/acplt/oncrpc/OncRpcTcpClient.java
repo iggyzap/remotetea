@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpClient.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpClient.java,v 1.2 2003/08/14 07:56:59 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -26,7 +26,6 @@ package org.acplt.oncrpc;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.net.SocketException;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -34,7 +33,7 @@ import java.net.Socket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the stream-oriented protocol TCP/IP.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 07:56:59 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpClient extends OncRpcClient {

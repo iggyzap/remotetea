@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.1 2003/08/13 12:03:43 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -26,18 +26,14 @@ package org.acplt.oncrpc;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.net.SocketException;
 import java.net.InetAddress;
 import java.net.DatagramSocket;
-
-import java.util.EventListener;
-import java.util.TooManyListenersException;
 
 /**
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the datagram-oriented protocol UDP/IP.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:43 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 07:58:42 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcUdpClient extends OncRpcClient {
@@ -429,7 +425,7 @@ public class OncRpcUdpClient extends OncRpcClient {
      * OncRpcBroadcastListener <code>listener</code>, which is the last
      * parameter to the this method.
      *
-     * <p>In contrast to the {@link #call(int, XdrAble, XdrAble) method,
+     * <p>In contrast to the {@link #call(int, XdrAble, XdrAble)} method,
      * <code>broadcastCall</code> will only send the ONC/RPC call once. It
      * will then wait for answers until the timeout as set by
      * {@link #setTimeout(int)} expires without resending the reply.

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcHttpClient.java,v 1.1 2003/08/13 12:03:41 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcHttpClient.java,v 1.2 2003/08/14 07:55:57 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -26,7 +26,6 @@ package org.acplt.oncrpc;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.net.InetAddress;
 import org.acplt.oncrpc.web.*;
 
 /**
@@ -99,7 +98,7 @@ import org.acplt.oncrpc.web.*;
  * insist on it. Reminds me of my Xmas lecture about "Internet Technologies --
  * Sacred Land of the Automation Industry?"...
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:41 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 07:55:57 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  *
  * @see XdrHttpDecodingStream

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrDecodingStream.java,v 1.1 2003/08/13 12:03:44 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrDecodingStream.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -38,7 +38,7 @@ import java.net.InetAddress;
  * {@link #xdrDecodeOpaque(byte[], int, int)} methods to make this complete
  * mess workable.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:44 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 07:58:42 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class XdrDecodingStream {
@@ -187,7 +187,7 @@ public abstract class XdrDecodingStream {
      * the exact length in advance. The decoded data is always padded to be
      * a multiple of four (because that's what the sender does).
      *
-     * @result The byte vector containing the decoded data.
+     * @return The byte vector containing the decoded data.
      *
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.

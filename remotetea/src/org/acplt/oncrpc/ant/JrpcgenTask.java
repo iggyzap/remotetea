@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/ant/JrpcgenTask.java,v 1.1 2003/08/13 12:03:50 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/ant/JrpcgenTask.java,v 1.2 2003/08/14 07:59:31 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Daune Consult SPRL
@@ -27,7 +27,6 @@ package org.acplt.oncrpc.ant;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import org.acplt.oncrpc.apps.jrpcgen.jrpcgen;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.1 2003/08/13 12:03:43 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -24,7 +24,6 @@
 
 package org.acplt.oncrpc;
 
-import java.io.IOException;
 import java.net.*;
 import java.lang.reflect.*;
 
@@ -49,7 +48,7 @@ import java.lang.reflect.*;
  *   <li>getSoTimeout() / setSoTimeout()
  * </ul>
  *
- * @version: $
+ * @version $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
  * @author Harald Albrecht
  */
 public class OncRpcUdpSocketHelper {

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcCallMessage.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcCallMessage.java,v 1.2 2003/08/14 07:55:07 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -24,8 +24,6 @@
 
 package org.acplt.oncrpc;
 
-import java.io.IOException;
-
 /**
  * The <code>OncRpcCallMessage</code> class represents a remote procedure call
  * message as defined by ONC/RPC in RFC 1831. Such messages are sent by ONC/RPC
@@ -42,7 +40,7 @@ import java.io.IOException;
  * to be encoded on the side of the client and decoded at the end of the
  * server.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 07:55:07 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcCallMessage extends OncRpcMessage {
