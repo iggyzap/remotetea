@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/tests/org/acplt/oncrpc/HttpTunnelPortmapTest.java,v 1.1 2003/08/13 12:03:53 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/tests/org/acplt/oncrpc/HttpTunnelPortmapTest.java,v 1.2 2003/08/14 09:49:58 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -25,8 +25,6 @@
 package tests.org.acplt.oncrpc;
 
 import java.io.IOException;
-import java.net.*;
-
 import org.acplt.oncrpc.*;
 
 public class HttpTunnelPortmapTest {
