@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcCallInformation.java,v 1.2 2003/08/14 08:11:27 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcCallInformation.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -66,7 +66,7 @@ import java.net.InetAddress;
  *
  * @see OncRpcDispatchable
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 08:11:27 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcCallInformation {
@@ -233,8 +233,6 @@ public class OncRpcCallInformation {
      * dispatchers. Instead use the other {@link #reply(XdrAble) reply method}
      * which just expects a serializable object to send back to the caller.
      *
-     * @param callInfo information about the original call, which are necessary
-     *   to send back the reply to the appropriate caller.
      * @param state ONC/RPC reply message header indicating success or failure
      *   and containing associated state information.
      * @param reply If not <code>null</code>, then this parameter references

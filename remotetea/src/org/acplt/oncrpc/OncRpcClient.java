@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcClient.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcClient.java,v 1.2 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -248,7 +248,7 @@ import java.net.InetAddress;
  * @see OncRpcUdpClient
  * @see OncRpcClientAuth
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcClient {
@@ -384,7 +384,7 @@ public abstract class OncRpcClient {
      * {@link #setTimeout(int)} method.
      *
      * @param procedureNumber Procedure number of the procedure to call.
-     * @param parameters The parameters of the procedure to call, contained
+     * @param params The parameters of the procedure to call, contained
      *   in an object which implements the {@link XdrAble} interface.
      * @param result The object receiving the result of the procedure call.
      *

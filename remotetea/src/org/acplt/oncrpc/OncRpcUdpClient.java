@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.net.DatagramSocket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the datagram-oriented protocol UDP/IP.
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 07:58:42 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcUdpClient extends OncRpcClient {
@@ -171,7 +171,7 @@ public class OncRpcUdpClient extends OncRpcClient {
      *
      * @param procedureNumber Procedure number of the procedure to call.
      * @param versionNumber Protocol version number.
-     * @param parameters The parameters of the procedure to call, contained
+     * @param params The parameters of the procedure to call, contained
      *   in an object which implements the {@link XdrAble} interface.
      * @param result The object receiving the result of the procedure call.
      *
@@ -439,7 +439,7 @@ public class OncRpcUdpClient extends OncRpcClient {
      * ONC/RPC calls, something you probably do not want at all.
      *
      * @param procedureNumber Procedure number of the procedure to call.
-     * @param parameters The parameters of the procedure to call, contained
+     * @param params The parameters of the procedure to call, contained
      *   in an object which implements the {@link XdrAble} interface.
      * @param result The object receiving the result of the procedure call.
      *   Note that this object is reused to deserialize all incomming replies

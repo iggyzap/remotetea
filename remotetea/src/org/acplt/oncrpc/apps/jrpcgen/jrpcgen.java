@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/jrpcgen.java,v 1.2 2003/08/14 08:03:37 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/jrpcgen.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -45,7 +45,7 @@ import java.text.SimpleDateFormat;
  * similiar to C (but more probably much more similiar to FORTRAN) known as
  * the RPC language (Remote Procedure Call Language).
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 08:03:37 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class jrpcgen {
@@ -680,7 +680,6 @@ public class jrpcgen {
      *   <code>false</code> if decoding method is to be returned.
      * @param oref name of object reference or <code>null</code> if
      *   "this" should be used instead.
-     * @param tail <code>true</code> if en-/decoding the tail element.
      */
     public static String codingMethod(JrpcgenDeclaration decl, boolean encode,
                                         String oref) {
@@ -847,7 +846,7 @@ public class jrpcgen {
      *
      * @param dataType data type identifier to check.
      *
-     * @result data type identifier.
+     * @return data type identifier.
      */
     public static String checkForSpecials(String dataType) {
         if ( globalIdentifiers.get(dataType) instanceof JrpcgenEnum ) {
@@ -2401,7 +2400,7 @@ public class jrpcgen {
      * is necessary to generate source code calling appropriate XDR encoding
      * and decoding methods.
      *
-     * @version $Revision: 1.2 $ $Date: 2003/08/14 08:03:37 $ $State: Exp $ $Locker:  $
+     * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
      * @author Harald Albrecht
      */
     class JrpcgenEnDecodingInfo {

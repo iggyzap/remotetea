@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpSocketHelper.java,v 1.1 2003/08/13 12:03:42 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpSocketHelper.java,v 1.2 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -65,7 +65,7 @@ import java.lang.reflect.*;
  * now a <code>connect()</code> method available. It is more than just a
  * simple wrapper for pre JDK&nbsp;1.4.
  *
- * @version: $Revision: 1.1 $ $Date: 2003/08/13 12:03:42 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpSocketHelper {

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jportmap/jportmap.java,v 1.1 2003/08/13 12:03:45 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jportmap/jportmap.java,v 1.2 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -41,7 +41,7 @@ import org.acplt.oncrpc.server.*;
  * should check first for another portmap already running before starting your
  * own one.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:45 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class jportmap extends OncRpcServerStub
@@ -120,8 +120,8 @@ public class jportmap extends OncRpcServerStub
      * same program and version number is found, this is returned instead.
      * This is compatible with the way Sun's portmap implementation works.
      *
-     * @param (program, version, protocol) to look up. The port field is not
-     *   used.
+     * @param params server identification (program, version, protocol) to
+     *   look up. The port field is not used.
      *
      * @return port number where server listens for incomming ONC/RPC calls,
      *   or <code>0</code>, if no server is registered for (program, protocol).

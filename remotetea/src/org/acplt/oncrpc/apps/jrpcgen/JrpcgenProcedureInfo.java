@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/JrpcgenProcedureInfo.java,v 1.2 2003/08/14 08:09:59 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/JrpcgenProcedureInfo.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -30,7 +30,7 @@ import java.util.Vector;
  * The <code>JrpcgenProcedureInfo</code> class contains information about a
  * specific version of an ONC/RPC program as defined in an rpcgen "x"-file.
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 08:09:59 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 class JrpcgenProcedureInfo {
@@ -67,7 +67,7 @@ class JrpcgenProcedureInfo {
      *   version of an ONC/RPC program.
      * @param procedureNumber Procedure number assigned to remote procedure.
      * @param resultType Type specifier of result returned by remote procedure.
-     * @param parameterType Type specifier of parameter to the remote procedure.
+     * @param parameters Type specifier of parameter to the remote procedure.
      */
     public JrpcgenProcedureInfo(String procedureId, String procedureNumber,
                                 String resultType, Vector parameters) {

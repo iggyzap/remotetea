@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpConnectionServerTransport.java,v 1.2 2003/08/14 08:12:44 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpConnectionServerTransport.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -37,7 +37,7 @@ import java.net.Socket;
  * @see OncRpcTcpServerTransport
  * @see OncRpcUdpServerTransport
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 08:12:44 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
@@ -52,8 +52,6 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
      * @param dispatcher Reference to interface of an object capable of
      *   dispatching (handling) ONC/RPC calls.
      * @param socket TCP/IP-based socket of new connection.
-     * @param port Number of port where the server will wait for incoming
-     *   calls.
      * @param program Number of ONC/RPC program handled by this server
      *   transport.
      * @param version Version number of ONC/RPC program handled.
@@ -86,8 +84,6 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
      * @param dispatcher Reference to interface of an object capable of
      *   dispatching (handling) ONC/RPC calls.
      * @param socket TCP/IP-based socket of new connection.
-     * @param port Number of port where the server will wait for incoming
-     *   calls.
      * @param info Array of program and version number tuples of the ONC/RPC
      *   programs and versions handled by this transport.
      * @param bufferSize Size of buffer used when receiving and sending

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpClient.java,v 1.2 2003/08/14 07:56:59 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpClient.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.net.Socket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the stream-oriented protocol TCP/IP.
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 07:56:59 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpClient extends OncRpcClient {
@@ -239,7 +239,7 @@ public class OncRpcTcpClient extends OncRpcClient {
      *
      * @param procedureNumber Procedure number of the procedure to call.
      * @param versionNumber Protocol version number.
-     * @param parameters The parameters of the procedure to call, contained
+     * @param params The parameters of the procedure to call, contained
      *   in an object which implements the {@link XdrAble} interface.
      * @param result The object receiving the result of the procedure call.
      *
@@ -401,7 +401,7 @@ public class OncRpcTcpClient extends OncRpcClient {
      * </pre>
      *
      * @param procedureNumber Procedure number of the procedure to call.
-     * @param parameters The parameters of the procedure to call, contained
+     * @param params The parameters of the procedure to call, contained
      *   in an object which implements the {@link XdrAble} interface.
      * @param flush Make sure that all pending batched calls are sent to
      *   the server.
