@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerAcceptedCallMessage.java,v 1.1 2003/08/13 12:03:51 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerAcceptedCallMessage.java,v 1.2 2003/08/14 08:10:59 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -25,7 +25,6 @@
 package org.acplt.oncrpc.server;
 
 import org.acplt.oncrpc.*;
-import java.io.IOException;
 
 /**
  * The <code>OncRpcServerAcceptedCallMessage</code> class represents (on the
@@ -37,7 +36,7 @@ import java.io.IOException;
  * <p>This ONC/RPC reply header class is only a convenience for server
  * implementors.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:51 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 08:10:59 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcServerAcceptedCallMessage extends OncRpcServerReplyMessage {

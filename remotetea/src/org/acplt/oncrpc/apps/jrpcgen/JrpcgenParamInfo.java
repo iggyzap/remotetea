@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/JrpcgenParamInfo.java,v 1.1 2003/08/13 12:03:45 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/JrpcgenParamInfo.java,v 1.2 2003/08/14 08:09:59 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -24,15 +24,12 @@
 
 package org.acplt.oncrpc.apps.jrpcgen;
 
-import java.util.Vector;
-import java.io.PrintWriter;
-
 /**
  * The <code>JrpcgenParamInfo</code> class contains information about the
  * data type of a procedure's parameter, as well as the parameter's optional
  * name.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:45 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 08:09:59 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 class JrpcgenParamInfo {
