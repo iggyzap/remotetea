@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrDecodingStream.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrDecodingStream.java,v 1.3 2003/08/14 13:48:33 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -38,7 +38,7 @@ import java.net.InetAddress;
  * {@link #xdrDecodeOpaque(byte[], int, int)} methods to make this complete
  * mess workable.
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 07:58:42 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 13:48:33 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class XdrDecodingStream {
@@ -341,6 +341,8 @@ public abstract class XdrDecodingStream {
 
     /**
      * Decodes (aka "deserializes") a string read from a XDR stream.
+     * If a character encoding has been set for this stream, then this
+     * will be used for conversion.
      *
      * @return Decoded String value.
      *
@@ -353,7 +355,9 @@ public abstract class XdrDecodingStream {
         if ( length > 0 ) {
             byte [] bytes = new byte[length];
             xdrDecodeOpaque(bytes, 0, length);
-            return new String(bytes);
+            return (characterEncoding != null) ?
+            	     new String(bytes, characterEncoding) :
+            	     new String(bytes);
         } else {
             return new String();
         }
@@ -620,6 +624,32 @@ public abstract class XdrDecodingStream {
         }
         return value;
     }
+
+	/**
+	 * Set the character encoding for deserializing strings.
+	 *
+	 * @param characterEncoding the encoding to use for deserializing strings.
+	 *   If <code>null</code>, the system's default encoding is to be used.
+	 */
+	public void setCharacterEncoding(String characterEncoding) {
+		this.characterEncoding = characterEncoding;
+	}
+
+	/**
+	 * Get the character encoding for deserializing strings.
+	 *
+	 * @return the encoding currently used for deserializing strings.
+	 *   If <code>null</code>, then the system's default encoding is used.
+	 */
+	public String getCharacterEncoding() {
+		return characterEncoding;
+	}
+
+	/**
+	 * Encoding to use when deserializing strings or <code>null</code> if
+	 * the system's default encoding should be used.
+	 */
+	private String characterEncoding = null;
 
 }
 

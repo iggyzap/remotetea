@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerStub.java,v 1.1 2003/08/13 12:03:51 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerStub.java,v 1.2 2003/08/14 13:47:04 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.io.IOException;
  * only used by jrpcgen generated servers, which provide a particular
  * set of remote procedures as defined in a x-file.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:51 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcServerStub {
@@ -181,6 +181,36 @@ public abstract class OncRpcServerStub {
             transports[idx].close();
         }
     }
+
+	/**
+	 * Set the character encoding for deserializing strings.
+	 *
+	 * @param characterEncoding the encoding to use for deserializing strings.
+	 *   If <code>null</code>, the system's default encoding is to be used.
+	 */
+	public void setCharacterEncoding(String characterEncoding) {
+		this.characterEncoding = characterEncoding;
+		int size = transports.length;
+		for ( int idx = 0; idx < size; ++idx ) {
+			transports[idx].setCharacterEncoding(characterEncoding);
+		}
+	}
+
+	/**
+	 * Get the character encoding for deserializing strings.
+	 *
+	 * @return the encoding currently used for deserializing strings.
+	 *   If <code>null</code>, then the system's default encoding is used.
+	 */
+	public String getCharacterEncoding() {
+		return characterEncoding;
+	}
+
+	/**
+	 * Encoding to use when deserializing strings or <code>null</code> if
+	 * the system's default encoding should be used.
+	 */
+	private String characterEncoding;
 
 }
 // End of OncRpcServerStub.java

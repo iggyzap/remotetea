@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpServerTransport.java,v 1.1 2003/08/13 12:03:52 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpServerTransport.java,v 1.2 2003/08/14 13:47:04 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -39,7 +39,7 @@ import java.net.InetAddress;
  * @see OncRpcTcpConnectionServerTransport
  * @see OncRpcUdpServerTransport
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:52 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpServerTransport extends OncRpcServerTransport {
@@ -399,6 +399,26 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
         return transmissionTimeout;
     }
 
+	/**
+	 * Set the character encoding for (de-)serializing strings.
+	 *
+	 * @param characterEncoding the encoding to use for (de-)serializing strings.
+	 *   If <code>null</code>, the system's default encoding is to be used.
+	 */
+	public void setCharacterEncoding(String characterEncoding) {
+		this.characterEncoding = characterEncoding;
+	}
+
+	/**
+	 * Get the character encoding for (de-)serializing strings.
+	 *
+	 * @return the encoding currently used for (de-)serializing strings.
+	 *   If <code>null</code>, then the system's default encoding is used.
+	 */
+	public String getCharacterEncoding() {
+		return characterEncoding;
+	}
+
     /**
      * TCP socket used for stream-based communication with ONC/RPC
      * clients.
@@ -420,6 +440,12 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
      * sent within replies.
      */
     protected int transmissionTimeout = 30000;
+
+	/**
+	 * Encoding to use when deserializing strings or <code>null</code> if
+	 * the system's default encoding should be used.
+	 */
+	private String characterEncoding = null;
 
 
     /**

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerTransport.java,v 1.2 2003/08/14 08:12:18 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerTransport.java,v 1.3 2003/08/14 13:47:04 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -46,7 +46,7 @@ import java.net.InetAddress;
  * @see OncRpcCallInformation
  * @see OncRpcDispatchable
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 08:12:18 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcServerTransport {
@@ -159,6 +159,22 @@ public abstract class OncRpcServerTransport {
     public int getPort() {
         return port;
     }
+
+	/**
+	 * Set the character encoding for (de-)serializing strings.
+	 *
+	 * @param characterEncoding the encoding to use for (de-)serializing strings.
+	 *   If <code>null</code>, the system's default encoding is to be used.
+	 */
+	public abstract void setCharacterEncoding(String characterEncoding);
+
+	/**
+	 * Get the character encoding for (de-)serializing strings.
+	 *
+	 * @return the encoding currently used for (de-)serializing strings.
+	 *   If <code>null</code>, then the system's default encoding is used.
+	 */
+	public abstract String getCharacterEncoding();
 
     /**
      * Retrieves the parameters sent within an ONC/RPC call message. It also

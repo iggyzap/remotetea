@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcHttpClient.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcHttpClient.java,v 1.4 2003/08/14 13:48:33 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -98,7 +98,7 @@ import org.acplt.oncrpc.web.*;
  * insist on it. Reminds me of my Xmas lecture about "Internet Technologies --
  * Sacred Land of the Automation Industry?"...
  *
- * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.4 $ $Date: 2003/08/14 13:48:33 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  *
  * @see XdrHttpDecodingStream
@@ -564,6 +564,27 @@ public class OncRpcHttpClient extends OncRpcClient {
             }
         } // for ( refreshesLeft )
     }
+
+	/**
+	 * Set the character encoding for (de-)serializing strings.
+	 *
+	 * @param characterEncoding the encoding to use for (de-)serializing strings.
+	 *   If <code>null</code>, the system's default encoding is to be used.
+	 */
+	public void setCharacterEncoding(String characterEncoding) {
+		sendingXdr.setCharacterEncoding(characterEncoding);
+		receivingXdr.setCharacterEncoding(characterEncoding);
+	}
+
+	/**
+	 * Get the character encoding for (de-)serializing strings.
+	 *
+	 * @return the encoding currently used for (de-)serializing strings.
+	 *   If <code>null</code>, then the system's default encoding is used.
+	 */
+	public String getCharacterEncoding() {
+		return receivingXdr.getCharacterEncoding();
+	}
 
     /**
      * DNS name of host where to contact HTTP server. Note that we can not

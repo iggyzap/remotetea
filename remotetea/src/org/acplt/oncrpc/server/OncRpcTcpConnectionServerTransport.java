@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpConnectionServerTransport.java,v 1.3 2003/08/14 11:26:50 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpConnectionServerTransport.java,v 1.4 2003/08/14 13:47:04 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -37,7 +37,7 @@ import java.net.Socket;
  * @see OncRpcTcpServerTransport
  * @see OncRpcUdpServerTransport
  *
- * @version $Revision: 1.3 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.4 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
@@ -496,6 +496,27 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
             }
         }
     }
+
+	/**
+	 * Set the character encoding for (de-)serializing strings.
+	 *
+	 * @param characterEncoding the encoding to use for (de-)serializing strings.
+	 *   If <code>null</code>, the system's default encoding is to be used.
+	 */
+	public void setCharacterEncoding(String characterEncoding) {
+		sendingXdr.setCharacterEncoding(characterEncoding);
+		receivingXdr.setCharacterEncoding(characterEncoding);
+	}
+
+	/**
+	 * Get the character encoding for (de-)serializing strings.
+	 *
+	 * @return the encoding currently used for (de-)serializing strings.
+	 *   If <code>null</code>, then the system's default encoding is used.
+	 */
+	public String getCharacterEncoding() {
+		return sendingXdr.getCharacterEncoding();
+	}
 
     /**
      * TCP socket used for stream-based communication with ONC/RPC
