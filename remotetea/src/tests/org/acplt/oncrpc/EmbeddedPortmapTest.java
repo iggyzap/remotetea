@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/tests/org/acplt/oncrpc/EmbeddedPortmapTest.java,v 1.1 2003/08/13 12:03:53 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/tests/org/acplt/oncrpc/EmbeddedPortmapTest.java,v 1.2 2003/08/14 09:49:10 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.net.*;
 
 import org.acplt.oncrpc.*;
-import org.acplt.oncrpc.server.*;
 import org.acplt.oncrpc.apps.jportmap.*;
 
 
@@ -105,7 +104,7 @@ public class EmbeddedPortmapTest {
         // Check that an embedded portmap service spins down properly if it
         // was started within this test.
         //
-        if ( epm.isPortmapRunning() && !externalPortmap ) {
+        if ( OncRpcEmbeddedPortmap.isPortmapRunning() && !externalPortmap ) {
             System.out.println("ERROR: embedded portmap service still running.");
         }
     }
