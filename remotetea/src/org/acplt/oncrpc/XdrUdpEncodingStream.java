@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrUdpEncodingStream.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrUdpEncodingStream.java,v 1.2 2003/08/14 11:07:39 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -32,7 +32,7 @@ import java.net.*;
  * functionality to {@link XdrDecodingStream} to send XDR packets over the
  * network using the datagram-oriented UDP/IP.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 11:07:39 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class XdrUdpEncodingStream extends XdrEncodingStream {
@@ -69,7 +69,7 @@ public class XdrUdpEncodingStream extends XdrEncodingStream {
      * Begins encoding a new XDR record. This involves resetting this
      * encoding XDR stream back into a known state.
      *
-     * @param receiver Indicates the receiver of the XDR data. This can be
+     * @param receiverAddress Indicates the receiver of the XDR data. This can be
      *   <code>null</code> for XDR streams connected permanently to a
      *   receiver (like in case of TCP/IP based XDR streams). 
      * @param receiverPort Port number of the receiver.
