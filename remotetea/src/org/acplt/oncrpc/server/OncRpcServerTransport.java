@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerTransport.java,v 1.1 2003/08/13 12:03:52 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcServerTransport.java,v 1.2 2003/08/14 08:12:18 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -46,7 +46,7 @@ import java.net.InetAddress;
  * @see OncRpcCallInformation
  * @see OncRpcDispatchable
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:52 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 08:12:18 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcServerTransport {
@@ -154,7 +154,7 @@ public abstract class OncRpcServerTransport {
      * Returns port number of socket this server transport listens on for
      * incoming ONC/RPC calls.
      *
-     * @result Port number of socket listening for incoming calls.
+     * @return Port number of socket listening for incoming calls.
      */
     public int getPort() {
         return port;
@@ -180,7 +180,7 @@ public abstract class OncRpcServerTransport {
      * of this ONC/RPC call. This method belongs to the lower-level access
      * pattern when handling ONC/RPC calls.
      *
-     * @result Reference to decoding XDR stream.
+     * @return Reference to decoding XDR stream.
      */
     protected abstract XdrDecodingStream getXdrDecodingStream();
 
@@ -203,7 +203,7 @@ public abstract class OncRpcServerTransport {
      * to this ONC/RPC call. This method belongs to the lower-level access
      * pattern when handling ONC/RPC calls.
      *
-     * @result Reference to enecoding XDR stream.
+     * @return Reference to enecoding XDR stream.
      */
     protected abstract XdrEncodingStream getXdrEncodingStream();
 

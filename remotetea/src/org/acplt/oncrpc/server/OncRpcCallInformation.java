@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcCallInformation.java,v 1.1 2003/08/13 12:03:51 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcCallInformation.java,v 1.2 2003/08/14 08:11:27 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -66,7 +66,7 @@ import java.net.InetAddress;
  *
  * @see OncRpcDispatchable
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:51 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2003/08/14 08:11:27 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcCallInformation {
@@ -131,7 +131,7 @@ public class OncRpcCallInformation {
      * of this ONC/RPC call. This method belongs to the lower-level access
      * pattern when handling ONC/RPC calls.
      *
-     * @result Reference to decoding XDR stream.
+     * @return Reference to decoding XDR stream.
      */
     public XdrDecodingStream getXdrDecodingStream() {
         return transport.getXdrDecodingStream();
@@ -206,7 +206,7 @@ public class OncRpcCallInformation {
      * to this ONC/RPC call. This method belongs to the lower-level access
      * pattern when handling ONC/RPC calls.
      *
-     * @result Reference to enecoding XDR stream.
+     * @return Reference to enecoding XDR stream.
      */
     public XdrEncodingStream getXdrEncodingStream() {
         return transport.getXdrEncodingStream();
