@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcException.java,v 1.1 2003/08/13 12:03:41 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcException.java,v 1.2 2005/11/11 21:03:15 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -38,7 +38,7 @@ package org.acplt.oncrpc;
  * over the wire. For error codes transmitted over the network, refer to
  * {@link OncRpcAcceptStatus} and {@link OncRpcRejectStatus}.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:41 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2005/11/11 21:03:15 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  *
  * @see java.lang.Exception
@@ -46,6 +46,11 @@ package org.acplt.oncrpc;
 public class OncRpcException extends Exception {
 
     /**
+	 * Defines the serial version UID for <code>OncRpcException</code>.
+	 */
+	private static final long serialVersionUID = -2170017056632137324L;
+
+	/**
      * Constructs an <code>OncRpcException</code> with a reason of
      * {@link OncRpcException#RPC_FAILED}.
      */

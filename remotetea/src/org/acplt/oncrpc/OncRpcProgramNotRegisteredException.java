@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcProgramNotRegisteredException.java,v 1.1 2003/08/13 12:03:41 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcProgramNotRegisteredException.java,v 1.2 2005/11/11 21:03:30 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -28,12 +28,17 @@ package org.acplt.oncrpc;
  * The class <code>OncRpcProgramNotRegisteredException</code> indicates
  * that the requests ONC/RPC program is not available at the specified host.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:41 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2005/11/11 21:03:30 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcProgramNotRegisteredException extends OncRpcException {
 
     /**
+	 * Defines the serial version UID for <code>OncRpcProgramNotRegisteredException</code>.
+	 */
+	private static final long serialVersionUID = 5073156463000368270L;
+
+	/**
      * Constructs an ONC/RPC program not registered exception with a detail
      * code of <code>OncRpcException.RPC_PROGNOTREGISTERED</code> and an
      * appropriate clear-text detail message.

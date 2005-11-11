@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTimeoutException.java,v 1.1 2003/08/13 12:03:42 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTimeoutException.java,v 1.2 2005/11/11 21:05:00 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -28,12 +28,17 @@ package org.acplt.oncrpc;
  * The class <code>OncRpcTimeoutException</code> indicates a timed out
  * call exception.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:42 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2005/11/11 21:05:00 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTimeoutException extends OncRpcException {
 
     /**
+	 * Defines the serial version UID for <code>OncRpcTimeoutException</code>.
+	 */
+	private static final long serialVersionUID = 2777518173161399732L;
+
+	/**
      * Initializes an <code>OncRpcTimeoutException</code>
      * with a detail of {@link OncRpcException#RPC_TIMEDOUT}.
      */

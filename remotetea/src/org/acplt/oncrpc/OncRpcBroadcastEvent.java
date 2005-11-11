@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcBroadcastEvent.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcBroadcastEvent.java,v 1.2 2005/11/11 21:02:15 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -38,12 +38,17 @@ import java.net.InetAddress;
  * @see OncRpcBroadcastAdapter
  * @see OncRpcUdpClient
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2005/11/11 21:02:15 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcBroadcastEvent extends EventObject {
 
     /**
+	 * Defines the serial version UID for <code>OncRpcBroadcastEvent</code>.
+	 */
+	private static final long serialVersionUID = 1604512454490873965L;
+
+	/**
      * Creates a new <code>KscPackageUpdateEvent</code> object and
      * initializes its state.
      *

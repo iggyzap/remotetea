@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcAuthenticationException.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcAuthenticationException.java,v 1.2 2005/11/11 21:01:44 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -28,12 +28,17 @@ package org.acplt.oncrpc;
  * The class <code>OncRpcAuthenticationException</code> indicates an
  * authentication exception.
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2005/11/11 21:01:44 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcAuthenticationException extends OncRpcException {
 
     /**
+	 * Defines the serial version UID for <code>OncRpcAuthenticationException</code>.
+	 */
+	private static final long serialVersionUID = 7747394107888423440L;
+
+	/**
      * Initializes an <code>OncRpcAuthenticationException</code>
      * with a detail of {@link OncRpcException#RPC_AUTHERROR} and
      * the specified {@link OncRpcAuthStatus authentication status} detail.
