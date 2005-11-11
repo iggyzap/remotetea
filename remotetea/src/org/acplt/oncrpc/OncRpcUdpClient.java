@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.4 2003/08/14 13:48:33 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.5 2005/11/11 21:04:30 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.net.DatagramSocket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the datagram-oriented protocol UDP/IP.
  *
- * @version $Revision: 1.4 $ $Date: 2003/08/14 13:48:33 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.5 $ $Date: 2005/11/11 21:04:30 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcUdpClient extends OncRpcClient {
@@ -271,7 +271,20 @@ public class OncRpcUdpClient extends OncRpcClient {
                             // an authentication problem itself, then this will
                             // be handled as any other rejected ONC/RPC call.
                             //
-                            replyHeader.xdrDecode(receivingXdr);
+                        	try {
+                        		replyHeader.xdrDecode(receivingXdr);
+                            } catch ( OncRpcException e ) {
+                            	//
+                            	// ** SF bug #1262106 **
+                            	//
+                            	// We ran into some sort of trouble. Usually this will have
+                            	// been a buffer underflow. Whatever, end the decoding process
+                            	// and ensure this way that the next call has a chance to start
+                            	// from a clean state.
+                            	//
+                            	receivingXdr.endDecoding();
+                            	throw(e);
+                            }
                             //
                             // Only deserialize the result, if the reply matches the call
                             // and if the reply signals a successful call. In case of an
@@ -311,7 +324,20 @@ public class OncRpcUdpClient extends OncRpcClient {
                                 // accepted by the ONC/RPC server, so we can now
                                 // proceed to decode the outcome of the RPC.
                                 //
-                                result.xdrDecode(receivingXdr);
+                                try {
+                                	result.xdrDecode(receivingXdr);
+                                } catch ( OncRpcException e ) {
+                                	//
+                                	// ** SF bug #1262106 **
+                                	//
+                                	// We ran into some sort of trouble. Usually this will have
+                                	// been a buffer underflow. Whatever, end the decoding process
+                                	// and ensure this way that the next call has a chance to start
+                                	// from a clean state.
+                                	//
+                                	receivingXdr.endDecoding();
+                                	throw(e);
+                                }
                                 //
                                 // Free pending resources of buffer and exit the call loop,
                                 // returning the reply to the caller through the result

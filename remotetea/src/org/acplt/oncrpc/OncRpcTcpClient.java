@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpClient.java,v 1.4 2003/08/14 13:48:33 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpClient.java,v 1.5 2005/11/11 21:04:30 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.net.Socket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the stream-oriented protocol TCP/IP.
  *
- * @version $Revision: 1.4 $ $Date: 2003/08/14 13:48:33 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.5 $ $Date: 2005/11/11 21:04:30 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpClient extends OncRpcClient {
@@ -316,7 +316,20 @@ public class OncRpcTcpClient extends OncRpcClient {
                     // an authentication problem itself, then this will
                     // be handled as any other rejected ONC/RPC call.
                     //
-                    replyHeader.xdrDecode(receivingXdr);
+                    try {
+                    	replyHeader.xdrDecode(receivingXdr);
+                    } catch ( OncRpcException e ) {
+                    	//
+                    	// ** SF bug #1262106 **
+                    	//
+                    	// We ran into some sort of trouble. Usually this will have
+                    	// been a buffer underflow. Whatever, end the decoding process
+                    	// and ensure this way that the next call has a chance to start
+                    	// from a clean state.
+                    	//
+                    	receivingXdr.endDecoding();
+                    	throw(e);
+                    }
                     //
                     // Only deserialize the result, if the reply matches the
                     // call. Otherwise skip this record.
@@ -352,7 +365,20 @@ public class OncRpcTcpClient extends OncRpcClient {
                     //
                     throw(replyHeader.newException());
                 }
-                result.xdrDecode(receivingXdr);
+                try {
+                	result.xdrDecode(receivingXdr);
+                } catch ( OncRpcException e ) {
+                	//
+                	// ** SF bug #1262106 **
+                	//
+                	// We ran into some sort of trouble. Usually this will have
+                	// been a buffer underflow. Whatever, end the decoding process
+                	// and ensure this way that the next call has a chance to start
+                	// from a clean state.
+                	//
+                	receivingXdr.endDecoding();
+                	throw(e);
+                }
                 //
                 // Free pending resources of buffer and exit the call loop,
                 // returning the reply to the caller through the result
