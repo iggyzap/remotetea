@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrHttpDecodingStream.java,v 1.1 2003/08/13 12:03:40 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/XdrHttpDecodingStream.java,v 1.2 2005/11/11 21:06:52 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -53,7 +53,7 @@ import org.acplt.oncrpc.web.Base64;
  * <p>Parsing is minimalistic to make the whole sucker as fast as possible (not
  * looking at Java's performance at all).
  *
- * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:40 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.2 $ $Date: 2005/11/11 21:06:52 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class XdrHttpDecodingStream extends XdrDecodingStream {
@@ -338,8 +338,6 @@ public class XdrHttpDecodingStream extends XdrDecodingStream {
      * @param opaque Byte vector which will receive the decoded opaque value.
      * @param offset Start offset in the byte vector.
      * @param length the number of bytes to decode.
-     *
-     * @return The number of opaque bytes read.
      *
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
