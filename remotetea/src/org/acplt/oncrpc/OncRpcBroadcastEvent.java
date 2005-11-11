@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcBroadcastEvent.java,v 1.2 2005/11/11 21:02:15 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcBroadcastEvent.java,v 1.3 2005/11/11 21:19:20 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -38,7 +38,7 @@ import java.net.InetAddress;
  * @see OncRpcBroadcastAdapter
  * @see OncRpcUdpClient
  *
- * @version $Revision: 1.2 $ $Date: 2005/11/11 21:02:15 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2005/11/11 21:19:20 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcBroadcastEvent extends EventObject {
@@ -87,6 +87,24 @@ public class OncRpcBroadcastEvent extends EventObject {
         return reply;
     }
 
+    /**
+     * Returns the number of the remote procedure called.
+     * 
+     * @return procedure number.
+     */
+    public int getProcedureNumber() {
+    	return procedureNumber;
+    }
+    
+    /**
+     * Returns the parameter message sent in a broadcast RPC.
+     * 
+     * @return parameter message object.
+     */
+    public XdrAble getParams() {
+    	return params;
+    }
+    
     /**
      * Contains the address of the sender of the ONC/RPC reply message.
      *
