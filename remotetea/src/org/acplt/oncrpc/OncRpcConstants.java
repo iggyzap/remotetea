@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcConstants.java,v 1.2 2003/08/14 08:30:11 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcConstants.java,v 1.3 2005/11/11 21:02:47 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -27,7 +27,7 @@ package org.acplt.oncrpc;
 /**
  * A collection of constants generally usefull for ONC/RPC.
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 08:30:11 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2005/11/11 21:02:47 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public interface OncRpcConstants {
@@ -35,7 +35,7 @@ public interface OncRpcConstants {
     /**
      * The current version of the Remote Tea Java library as a string.
      */
-    public static final String REMOTETEA_VERSION_STRING = "1.0.3";
+    public static final String REMOTETEA_VERSION_STRING = "1.0.4";
 
     /**
      * The current major version number of the Remote Tea Java library.
@@ -50,7 +50,7 @@ public interface OncRpcConstants {
     /**
      * The current patch level of the Remote Tea Java library.
      */
-    public static final int REMOTETEA_VERSION_PATCHLEVEL = 3;
+    public static final int REMOTETEA_VERSION_PATCHLEVEL = 4;
 
     /**
      * The current preversion version number. If not zero, then this
