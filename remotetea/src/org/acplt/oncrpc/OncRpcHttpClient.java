@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcHttpClient.java,v 1.4 2003/08/14 13:48:33 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcHttpClient.java,v 1.5 2005/11/11 21:18:43 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -98,7 +98,7 @@ import org.acplt.oncrpc.web.*;
  * insist on it. Reminds me of my Xmas lecture about "Internet Technologies --
  * Sacred Land of the Automation Industry?"...
  *
- * @version $Revision: 1.4 $ $Date: 2003/08/14 13:48:33 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.5 $ $Date: 2005/11/11 21:18:43 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  *
  * @see XdrHttpDecodingStream
@@ -586,6 +586,24 @@ public class OncRpcHttpClient extends OncRpcClient {
 		return receivingXdr.getCharacterEncoding();
 	}
 
+	/**
+	 * Returns the host name of the HTTP server we are connected to.
+	 * 
+	 * @return host name.
+	 */
+	public String getHostname() {
+		return hostname;
+	}
+	
+	/**
+	 * Returns the port of the HTTP server we are connected to.
+	 * 
+	 * @return port number.
+	 */
+	public int getHttpPort() {
+		return httpPort;
+	}
+	
     /**
      * DNS name of host where to contact HTTP server. Note that we can not
      * use an <code>InetAddress</code> here as we have to support virtual
