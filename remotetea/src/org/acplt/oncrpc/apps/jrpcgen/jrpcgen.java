@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/jrpcgen.java,v 1.4 2005/11/11 21:28:48 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/jrpcgen.java,v 1.5 2006/03/09 20:54:28 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -45,7 +45,7 @@ import java.text.SimpleDateFormat;
  * similiar to C (but more probably much more similiar to FORTRAN) known as
  * the RPC language (Remote Procedure Call Language).
  *
- * @version $Revision: 1.4 $ $Date: 2005/11/11 21:28:48 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.5 $ $Date: 2006/03/09 20:54:28 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class jrpcgen {
@@ -81,7 +81,7 @@ public class jrpcgen {
     /**
      * Current version of jrpcgen.
      */
-    public static final String VERSION = "1.0.6";
+    public static final String VERSION = "1.0.7";
 
     /**
      * A remote procedure has no parameters and thus needs to use the
@@ -2221,7 +2221,7 @@ public class jrpcgen {
         }
 
         out.println("        } else {");
-        out.println("            call.failProcedureUnavailable();");
+        out.println("            call.failProgramUnavailable();");
         out.println("        }");
         out.println("    }");
         out.println();
@@ -2443,7 +2443,7 @@ public class jrpcgen {
      * is necessary to generate source code calling appropriate XDR encoding
      * and decoding methods.
      *
-     * @version $Revision: 1.4 $ $Date: 2005/11/11 21:28:48 $ $State: Exp $ $Locker:  $
+     * @version $Revision: 1.5 $ $Date: 2006/03/09 20:54:28 $ $State: Exp $ $Locker:  $
      * @author Harald Albrecht
      */
     class JrpcgenEnDecodingInfo {
