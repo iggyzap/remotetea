@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  $Header: /home/harald/repos/remotetea.sf.net/remotetea/build.xml,v 1.3 2005/11/11 20:50:13 haraldalbrecht Exp $
+  $Header: /home/harald/repos/remotetea.sf.net/remotetea/build.xml,v 1.4 2006/03/18 17:53:17 haraldalbrecht Exp $
   
   build.xml - contains the ANT rules for building Remote Tea
   
@@ -98,6 +98,7 @@
 				<include name="changelog.html" />
 				<include name="docstyle.css" />
 				<include name="COPYING.LIB" />
+				<include name="build.xml" />
 			</zipfileset>
 		</zip>
 		<!-- source only distribution -->
