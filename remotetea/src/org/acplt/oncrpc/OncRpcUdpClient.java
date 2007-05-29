@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.5 2005/11/11 21:04:30 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.6 2007/05/29 18:48:27 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.net.DatagramSocket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the datagram-oriented protocol UDP/IP.
  *
- * @version $Revision: 1.5 $ $Date: 2005/11/11 21:04:30 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.6 $ $Date: 2007/05/29 18:48:27 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcUdpClient extends OncRpcClient {
@@ -249,8 +249,13 @@ public class OncRpcUdpClient extends OncRpcClient {
                         int currentTimeout = (int)(stopTime - System.currentTimeMillis());
                         if ( currentTimeout > resendTimeout ) {
                             currentTimeout = resendTimeout;
-                        } else if ( currentTimeout < 0 ) {
-                            currentTimeout = 0;
+                        } else if ( currentTimeout < 1 ) {
+                        	//
+                        	// as setSoTimeout interprets a timeout of zero as
+                        	// infinite (?§$@%&!!!) we need to ensure that we
+                        	// have a finite timeout, albeit maybe an infinitesimal
+                        	// finite one.
+                            currentTimeout = 1;
                         }
                         socket.setSoTimeout(currentTimeout);
                         receivingXdr.beginDecoding();
