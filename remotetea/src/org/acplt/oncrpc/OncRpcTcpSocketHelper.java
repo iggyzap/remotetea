@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpSocketHelper.java,v 1.2 2003/08/14 11:26:50 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcTcpSocketHelper.java,v 1.3 2007/05/29 19:45:46 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -65,7 +65,7 @@ import java.lang.reflect.*;
  * now a <code>connect()</code> method available. It is more than just a
  * simple wrapper for pre JDK&nbsp;1.4.
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 11:26:50 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2007/05/29 19:45:46 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpSocketHelper {
@@ -371,7 +371,7 @@ public class OncRpcTcpSocketHelper {
            throws SocketException {
         if ( methodGetSendBufferSize != null ) {
             try {
-                Object result = methodGetSendBufferSize.invoke(socket, null);
+                Object result = methodGetSendBufferSize.invoke(socket, (Object[]) null);
                 if ( result instanceof Integer ) {
                     return ((Integer) result).intValue();
                 }
@@ -441,7 +441,7 @@ public class OncRpcTcpSocketHelper {
            throws SocketException {
         if ( methodGetReceiveBufferSize != null ) {
             try {
-                Object result = methodGetReceiveBufferSize.invoke(socket, null);
+                Object result = methodGetReceiveBufferSize.invoke(socket, (Object[]) null);
                 if ( result instanceof Integer ) {
                     return ((Integer) result).intValue();
                 }
@@ -474,12 +474,12 @@ public class OncRpcTcpSocketHelper {
         try {
             methodSetSendBufferSize = socketClass.getMethod("setSendBufferSize",
                                              new Class [] {int.class});
-            methodGetSendBufferSize = socketClass.getMethod("getSendBufferSize", null);
+            methodGetSendBufferSize = socketClass.getMethod("getSendBufferSize", (Class[]) null);
         } catch ( Exception e ) { }
         try {
             methodSetReceiveBufferSize = socketClass.getMethod("setReceiveBufferSize",
                                              new Class [] {int.class});
-            methodGetReceiveBufferSize = socketClass.getMethod("getReceiveBufferSize", null);
+            methodGetReceiveBufferSize = socketClass.getMethod("getReceiveBufferSize", (Class[]) null);
         } catch ( Exception e ) { }
         // JRE 1.4 specific stuff
         try {

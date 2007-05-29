@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.3 2007/05/29 19:45:46 haraldalbrecht Exp $
  *
  * Copyright (c) 2001
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -48,7 +48,7 @@ import java.lang.reflect.*;
  *   <li>getSoTimeout() / setSoTimeout()
  * </ul>
  *
- * @version $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.2 2003/08/14 07:58:42 haraldalbrecht Exp $
+ * @version $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.3 2007/05/29 19:45:46 haraldalbrecht Exp $
  * @author Harald Albrecht
  */
 public class OncRpcUdpSocketHelper {
@@ -109,7 +109,7 @@ public class OncRpcUdpSocketHelper {
            throws SocketException {
         if ( methodGetSendBufferSize != null ) {
             try {
-                Object result = methodGetSendBufferSize.invoke(socket, null);
+                Object result = methodGetSendBufferSize.invoke(socket, (Object[]) null);
                 if ( result instanceof Integer ) {
                     return ((Integer) result).intValue();
                 }
@@ -179,7 +179,7 @@ public class OncRpcUdpSocketHelper {
            throws SocketException {
         if ( methodGetReceiveBufferSize != null ) {
             try {
-                Object result = methodGetReceiveBufferSize.invoke(socket, null);
+                Object result = methodGetReceiveBufferSize.invoke(socket, (Object[]) null);
                 if ( result instanceof Integer ) {
                     return ((Integer) result).intValue();
                 }
@@ -211,12 +211,12 @@ public class OncRpcUdpSocketHelper {
         try {
             methodSetSendBufferSize = c.getMethod("setSendBufferSize",
                                              new Class [] {int.class});
-            methodGetSendBufferSize = c.getMethod("getSendBufferSize", null);
+            methodGetSendBufferSize = c.getMethod("getSendBufferSize", (Class[]) null);
         } catch ( Exception e ) { }
         try {
             methodSetReceiveBufferSize = c.getMethod("setReceiveBufferSize",
                                              new Class [] {int.class});
-            methodGetReceiveBufferSize = c.getMethod("getReceiveBufferSize", null);
+            methodGetReceiveBufferSize = c.getMethod("getReceiveBufferSize", (Class[]) null);
         } catch ( Exception e ) { }
     }
 
