@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/tests/org/acplt/oncrpc/jrpcgen/demoServer.java,v 1.2 2003/08/14 08:14:43 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/tests/org/acplt/oncrpc/jrpcgen/demoServer.java,v 1.3 2007/05/29 19:19:03 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -98,6 +98,14 @@ public class demoServer extends demoServerStub {
         return newNode;
     }
 
+    /**
+     * 
+     */
+    public SOMERESULT readSomeResult_1() {
+    	SOMERESULT res = new SOMERESULT();
+    	return res;
+    }
+    
     /**
      *
      */
