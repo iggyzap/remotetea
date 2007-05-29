@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/jrpcgen.java,v 1.5 2006/03/09 20:54:28 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/apps/jrpcgen/jrpcgen.java,v 1.6 2007/05/29 19:38:30 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -45,7 +45,7 @@ import java.text.SimpleDateFormat;
  * similiar to C (but more probably much more similiar to FORTRAN) known as
  * the RPC language (Remote Procedure Call Language).
  *
- * @version $Revision: 1.5 $ $Date: 2006/03/09 20:54:28 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.6 $ $Date: 2007/05/29 19:38:30 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class jrpcgen {
@@ -910,11 +910,15 @@ public class jrpcgen {
         // Create new source code file containing a Java class representing
         // the XDR struct.
         //
+        String access = "    public ";	// modify encapsulation with beans
         PrintWriter out = createJavaSourceFile(s.identifier);
 
         out.print("public class " + s.identifier + " implements XdrAble");
         if ( makeSerializable ) {
             out.print(", java.io.Serializable");
+        }
+        if ( makeBean ) {
+        	access = "    protected ";
         }
         out.println(" {");
 
@@ -931,7 +935,7 @@ public class jrpcgen {
             hash.update(d.type);
             hash.update(d.kind);
             hash.update(d.identifier);
-            out.print("    public " + checkForSpecials(d.type) + " ");
+            out.print(access + checkForSpecials(d.type) + " ");
             if ( ((d.kind == JrpcgenDeclaration.FIXEDVECTOR)
                   || (d.kind == JrpcgenDeclaration.DYNAMICVECTOR))
                  && !d.type.equals("String") ) {
@@ -2443,7 +2447,7 @@ public class jrpcgen {
      * is necessary to generate source code calling appropriate XDR encoding
      * and decoding methods.
      *
-     * @version $Revision: 1.5 $ $Date: 2006/03/09 20:54:28 $ $State: Exp $ $Locker:  $
+     * @version $Revision: 1.6 $ $Date: 2007/05/29 19:38:30 $ $State: Exp $ $Locker:  $
      * @author Harald Albrecht
      */
     class JrpcgenEnDecodingInfo {
