@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcException.java,v 1.2 2005/11/11 21:03:15 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcException.java,v 1.3 2008/01/02 15:13:35 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -38,7 +38,7 @@ package org.acplt.oncrpc;
  * over the wire. For error codes transmitted over the network, refer to
  * {@link OncRpcAcceptStatus} and {@link OncRpcRejectStatus}.
  *
- * @version $Revision: 1.2 $ $Date: 2005/11/11 21:03:15 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2008/01/02 15:13:35 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  *
  * @see java.lang.Exception
@@ -155,6 +155,9 @@ public class OncRpcException extends Exception {
         case RPC_WRONGMESSAGE:
             message = "wrong ONC/RPC message type received";
             break;
+        case RPC_CANNOTREGISTER:
+        	message = "cannot register ONC/RPC port with local portmap";
+        	break;
 
         case RPC_SUCCESS:
         default:
@@ -279,6 +282,11 @@ public class OncRpcException extends Exception {
      * {@link OncRpcReplyMessage} throw exceptions with this reason.
      */
     public static final int RPC_WRONGMESSAGE = 44;
+    /**
+     * Indicates that a server could not register a transport with the
+     * ONC/RPC port mapper.
+     */
+    public static final int RPC_CANNOTREGISTER = 45;
 
     /**
      * Specific detail (reason) about this <code>OncRpcException</code>,

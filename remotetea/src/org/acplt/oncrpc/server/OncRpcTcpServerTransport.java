@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpServerTransport.java,v 1.2 2003/08/14 13:47:04 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpServerTransport.java,v 1.3 2008/01/02 15:13:35 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -39,7 +39,7 @@ import java.net.InetAddress;
  * @see OncRpcTcpConnectionServerTransport
  * @see OncRpcUdpServerTransport
  *
- * @version $Revision: 1.2 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.3 $ $Date: 2008/01/02 15:13:35 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpServerTransport extends OncRpcServerTransport {
@@ -204,7 +204,7 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
      * requests with the ONC/RPC portmapper.
      *
      * @throws OncRpcException if the portmapper could not be contacted
-     *   successfully.
+     *   successfully of if the portmapper rejected port registration(s).
      */
     public void register()
            throws OncRpcException {
@@ -213,8 +213,14 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
                 new OncRpcPortmapClient(InetAddress.getByName("127.0.0.1"));
             int size = info.length;
             for ( int idx = 0; idx < size; ++idx ) {
-                portmapper.setPort(info[idx].program, info[idx].version,
-                                   OncRpcProtocols.ONCRPC_TCP, port);
+            	//
+            	// Try to register the port for our transport with the local ONC/RPC
+            	// portmapper. If this fails, bail out with an exception.
+            	//
+                if ( !portmapper.setPort(info[idx].program, info[idx].version,
+                                   OncRpcProtocols.ONCRPC_TCP, port) ) {
+                	throw(new OncRpcException(OncRpcException.RPC_CANNOTREGISTER));
+                }
             }
         } catch ( IOException e ) {
             throw(new OncRpcException(OncRpcException.RPC_FAILED));

@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcUdpServerTransport.java,v 1.3 2003/08/14 13:47:04 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcUdpServerTransport.java,v 1.4 2008/01/02 15:13:35 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -37,7 +37,7 @@ import java.net.InetAddress;
  * @see OncRpcServerTransport
  * @see OncRpcTcpServerTransport
  *
- * @version $Revision: 1.3 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.4 $ $Date: 2008/01/02 15:13:35 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcUdpServerTransport extends OncRpcServerTransport {
@@ -212,8 +212,14 @@ public class OncRpcUdpServerTransport extends OncRpcServerTransport {
                 new OncRpcPortmapClient(InetAddress.getByName("127.0.0.1"));
             int size = info.length;
             for ( int idx = 0; idx < size; ++idx ) {
-                portmapper.setPort(info[idx].program, info[idx].version,
-                                   OncRpcProtocols.ONCRPC_UDP, port);
+            	//
+            	// Try to register the port for our transport with the local ONC/RPC
+            	// portmapper. If this fails, bail out with an exception.
+            	//
+                if ( !portmapper.setPort(info[idx].program, info[idx].version,
+                                   OncRpcProtocols.ONCRPC_UDP, port) ) {
+                	throw(new OncRpcException(OncRpcException.RPC_CANNOTREGISTER));
+                }
             }
         } catch ( IOException e ) {
             throw(new OncRpcException(OncRpcException.RPC_FAILED));

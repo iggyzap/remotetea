@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpConnectionServerTransport.java,v 1.4 2003/08/14 13:47:04 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/server/OncRpcTcpConnectionServerTransport.java,v 1.5 2008/01/02 15:13:35 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -37,7 +37,7 @@ import java.net.Socket;
  * @see OncRpcTcpServerTransport
  * @see OncRpcUdpServerTransport
  *
- * @version $Revision: 1.4 $ $Date: 2003/08/14 13:47:04 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.5 $ $Date: 2008/01/02 15:13:35 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
@@ -124,6 +124,11 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
         //
         sendingXdr = new XdrTcpEncodingStream(socket, bufferSize);
         receivingXdr = new XdrTcpDecodingStream(socket, bufferSize);
+        //
+        // Inherit the character encoding setting from the listening
+        // transport (parent transport).
+        //
+        setCharacterEncoding(parent.getCharacterEncoding());
     }
 
     /**
