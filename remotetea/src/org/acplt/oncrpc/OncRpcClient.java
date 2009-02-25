@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcClient.java,v 1.3 2003/08/14 13:48:33 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcClient.java,v 1.4 2009/02/25 19:15:23 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -248,7 +248,7 @@ import java.net.InetAddress;
  * @see OncRpcUdpClient
  * @see OncRpcClientAuth
  *
- * @version $Revision: 1.3 $ $Date: 2003/08/14 13:48:33 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.4 $ $Date: 2009/02/25 19:15:23 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public abstract class OncRpcClient {
@@ -295,7 +295,12 @@ public abstract class OncRpcClient {
         // the other end of the HTTP tunnel (at the web server).
         //
         if ( (port == 0) && (protocol != OncRpcProtocols.ONCRPC_HTTP) ) {
-            OncRpcPortmapClient portmap = new OncRpcPortmapClient(host);
+        	//
+        	// FIX: We now use the same protocol to query the remote portmapper
+        	// as we're told to use for later communicating with the remote
+        	// RPC server.
+        	//
+            OncRpcPortmapClient portmap = new OncRpcPortmapClient(host, protocol);
             try {
                 port = portmap.getPort(program, version, protocol);
             } finally {
