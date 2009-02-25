@@ -1,5 +1,5 @@
 /*
- * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.6 2007/05/29 18:48:27 haraldalbrecht Exp $
+ * $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpClient.java,v 1.7 2009/02/25 19:20:40 haraldalbrecht Exp $
  *
  * Copyright (c) 1999, 2000
  * Lehrstuhl fuer Prozessleittechnik (PLT), RWTH Aachen
@@ -33,7 +33,7 @@ import java.net.DatagramSocket;
  * ONC/RPC client which communicates with ONC/RPC servers over the network
  * using the datagram-oriented protocol UDP/IP.
  *
- * @version $Revision: 1.6 $ $Date: 2007/05/29 18:48:27 $ $State: Exp $ $Locker:  $
+ * @version $Revision: 1.7 $ $Date: 2009/02/25 19:20:40 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
 public class OncRpcUdpClient extends OncRpcClient {
@@ -252,7 +252,7 @@ public class OncRpcUdpClient extends OncRpcClient {
                         } else if ( currentTimeout < 1 ) {
                         	//
                         	// as setSoTimeout interprets a timeout of zero as
-                        	// infinite (?§$@%&!!!) we need to ensure that we
+                        	// infinite (?ï¿½$@%&!!!) we need to ensure that we
                         	// have a finite timeout, albeit maybe an infinitesimal
                         	// finite one.
                             currentTimeout = 1;
@@ -260,12 +260,15 @@ public class OncRpcUdpClient extends OncRpcClient {
                         socket.setSoTimeout(currentTimeout);
                         receivingXdr.beginDecoding();
                         //
-                        // Only accept incomming reply if it comes from the same
-                        // address we've sent the ONC/RPC call to. Otherwise throw
-                        // away the datagram packet containing the reply and start
-                        // over again, waiting for the next reply to arrive.
+                        // FIX: do not check for reply address any longer as this
+                        // check causes problems with valid clustering usecases.
                         //
-                        if ( host.equals(receivingXdr.getSenderAddress()) ) {
+                        //# Only accept incomming reply if it comes from the same
+                        //# address we've sent the ONC/RPC call to. Otherwise throw
+                        //# away the datagram packet containing the reply and start
+                        //# over again, waiting for the next reply to arrive.
+                        //
+      //                  if ( host.equals(receivingXdr.getSenderAddress()) ) {
                             //
                             // First, pull off the reply message header of the
                             // XDR stream. In case we also received a verifier
@@ -361,13 +364,17 @@ public class OncRpcUdpClient extends OncRpcClient {
                                 //
                                 // [Nothing to do here, just wait for the next datagram]
                             }
-                        } else {
+//                        } else {
                             //
-                            // IP address of received UDP datagram is not the same
-                            // as the IP address of the ONC/RPC server.
+                            // FIX: This part has become unnecessary as we
+                            // don't check the sender address for responses
+                            // any longer.
                             //
-                            // [Nothing to do here, just wait for the next datagram]
-                        }
+                            //# IP address of received UDP datagram is not the same
+                            //# as the IP address of the ONC/RPC server.
+                            //#
+                            //# [Nothing to do here, just wait for the next datagram]
+//                        }
                     } catch ( InterruptedIOException e ) {
                         //
                         // Note that we only catch timeouts here, but no other
