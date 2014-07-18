@@ -25,6 +25,7 @@
 package org.acplt.oncrpc.server;
 
 import org.acplt.oncrpc.*;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -422,6 +423,37 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
                 //
                 close();
                 return;
+            } catch ( OncRpcAuthenticationException e ) {
+            	//
+            	// In case of an ONC/RPC authentication exception, verification
+            	// of the authentication data failed. In this case lets send an authentication
+            	// error message to the client.
+                if ( pendingDecoding ) {
+                    pendingDecoding = false;
+                    try {
+                        receivingXdr.endDecoding();
+                    } catch ( IOException e2 ) {
+                        close();
+                        return;
+                    } catch ( OncRpcException e2 ) {                    	
+                    }
+
+                    try
+                    {
+                        callInfo.failAuthenticationFailed(e.getAuthStatus());
+                    }
+                    catch ( IOException writeException )
+                    {
+                    	close();
+                    	return;
+                    }
+                    catch(OncRpcException rpcException)
+                    {
+                    	// Well we cannot do anything more than continuing...
+                    }
+                }
+                continue;
+                
             } catch ( OncRpcException e ) {
                 //
                 // In case of ONC/RPC exceptions at this stage we're silently
