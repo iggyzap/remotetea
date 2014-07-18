@@ -105,11 +105,34 @@ public abstract class OncRpcClientStub {
     /**
      * Calls the "null procedure", which should always be provided
      * by a remote ONC/RPC server.
-     *  
-     * @throws OncRpcException if an ONC/RPC error occurs.
+     * 
+     * @throws OncRpcException if an ONC/RPC error occurs or
+     *                         the client stub does not have
+     *                         a client proxy to use for the call.
+     *                          
      */
     public void nullproc() throws OncRpcException {
-    	this.client.call(0, XdrVoid.XDR_VOID, XdrVoid.XDR_VOID);
+    	/*
+    	 * Do we have a client proxy?
+    	 */
+    	if ( this.client == null )
+    	{
+    		/*
+    		 * No.
+    		 * As the client stub does not know anything of
+    		 * the desired ONC/RPC server, there is no chance
+    		 * to (re)establish a connection to it. Therefore
+    		 * a generic RPC - failure exception is the only choice.
+    		 */
+    		throw new OncRpcException(OncRpcException.RPC_FAILED, "ONC/RPC client is not connected.");
+    	}
+    	else
+    	{
+    		/*
+    		 * Yes, then let's try the call.
+    		 */
+        	this.client.call(0, XdrVoid.XDR_VOID, XdrVoid.XDR_VOID);
+    	}
     }
     
     /**
