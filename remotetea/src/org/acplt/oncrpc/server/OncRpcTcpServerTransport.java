@@ -321,11 +321,22 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
      * to handle ONC/RPC calls on this particular connection.
      */
     public void listen() {
+    	Thread listenThread = null;
+    	
+    	/*
+    	 * Do we have an authentication scheme repository?
+    	 * If not, we use a standard authentication scheme repository.
+    	 */
+    	if ( this.getAuthenticationSchemes() == null )
+    	{
+    		this.setAuthenticationSchemes(new OncRpcServerAuthSchemes());
+    	}
+    	
         //
         // Create a new (daemon) thread which will handle incoming connection
         // requests.
         //
-        Thread listenThread = new Thread("TCP server transport listener thread") {
+        listenThread = new Thread("TCP server transport listener thread") {
             public void run() {
                 for ( ;; ) {
                     try {

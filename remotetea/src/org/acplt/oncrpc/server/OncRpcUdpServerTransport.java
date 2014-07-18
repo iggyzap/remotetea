@@ -396,7 +396,22 @@ public class OncRpcUdpServerTransport extends OncRpcServerTransport {
      * sending back replies.
      */
     public void _listen() {
-        OncRpcCallInformation callInfo = new OncRpcCallInformation(this);
+    	OncRpcCallInformation callInfo = null;
+    	
+    	/*
+    	 * Do we have an authentication scheme repository?
+    	 * If not, we set a standard authentication scheme repository.
+    	 */
+    	if ( this.getAuthenticationSchemes() == null )
+    	{
+    		this.setAuthenticationSchemes(new OncRpcServerAuthSchemes());
+    	}
+    	
+    	/*
+    	 * Now we create our call information object.
+    	 */
+        callInfo = new OncRpcCallInformation(this);
+        
         for ( ;; ) {
             //
             // Start decoding the incomming call. This involves remembering
