@@ -103,6 +103,16 @@ public abstract class OncRpcClientStub {
     }
 
     /**
+     * Calls the "null procedure", which should always be provided
+     * by a remote ONC/RPC server.
+     *  
+     * @throws OncRpcException if an ONC/RPC error occurs.
+     */
+    public void nullproc() throws OncRpcException {
+    	this.client.call(0, XdrVoid.XDR_VOID, XdrVoid.XDR_VOID);
+    }
+    
+    /**
      * Returns ONC/RPC client proxy object used for communication with a
      * remote ONC/RPC server.
      *
@@ -110,6 +120,43 @@ public abstract class OncRpcClientStub {
      */
     public OncRpcClient getClient() {
         return client;
+    }
+    
+    /**
+     * Sets a new ONC/RPC client proxy, which will be used for future
+     * communication with a remote ONC/RPC server.
+     * 
+     * @param client Passing <em>null</em> has the same effect as calling
+     *               method {@link #close()} on this object. Passing the same client
+     *               proxy will not have any effect.
+     *               Otherwise the actual client proxy will be closed and the
+     *               passed client proxy will be set. 
+     */
+    public void setClient(OncRpcClient client) {
+    	/*
+    	 * Differs the passed client proxy from the
+    	 * actual client proxy?
+    	 */
+    	if ( this.client != client )
+    	{
+    		/*
+    		 * Yes, they differ. Then we should close
+    		 * the actual client proxy first, before
+    		 * setting the new client proxy.
+    		 * 
+    		 * A probably raised exception will be ignored.
+    		 * In any case the passed client will be set as
+    		 * the new client proxy.
+    		 */
+    		try
+    		{
+    			this.close();
+    		}
+    		catch( OncRpcException ignoredRpcException )
+    		{}
+
+    		this.client = client;
+    	}
     }
 
     /**
