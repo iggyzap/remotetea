@@ -67,8 +67,10 @@ public abstract class OncRpcServerTransport {
      * @param info Array of program and version number tuples of the ONC/RPC
      *   programs and versions handled by this transport.
      */
-    protected OncRpcServerTransport(OncRpcDispatchable dispatcher, int port,
-                                    OncRpcServerTransportRegistrationInfo [] info) {
+    protected OncRpcServerTransport(
+    		OncRpcDispatchable dispatcher,
+    		int port,
+            OncRpcServerTransportRegistrationInfo [] info) {
         this.dispatcher = dispatcher;
         this.port = port;
         this.info = info;
@@ -284,6 +286,29 @@ public abstract class OncRpcServerTransport {
            throws OncRpcException, IOException;
 
     /**
+     * Sets the authentication scheme repository providing authentication handlers
+     * for the call message processing.
+     * 
+     * @param authenticationSchemes The authentication scheme repository of the ONC/RPC server.
+     */
+    void setAuthenticationSchemes(OncRpcServerAuthSchemes authenticationSchemes)
+    {
+    	this.authenticationSchemes = authenticationSchemes;
+    }
+    
+    /**
+     * Delivers the authentication scheme repository providing the authentication
+     * handlers for the call message processing.
+     * 
+     * @return The authentication scheme repository primarly set by the ONC/RPC server
+     *         stub implementation.
+     */
+    OncRpcServerAuthSchemes getAuthenticationSchemes()
+    {
+    	return this.authenticationSchemes;
+    }
+    
+    /**
      * Reference to interface of an object capable of handling/dispatching
      * ONC/RPC requests.
      */
@@ -298,6 +323,12 @@ public abstract class OncRpcServerTransport {
      * Program and version number tuples handled by this server transport.
      */
     protected OncRpcServerTransportRegistrationInfo [] info;
+    
+    /**
+     * A reference to the authentication scheme repository provided by the
+     * ONC/RPC server.
+     */
+    private OncRpcServerAuthSchemes authenticationSchemes = null;
 
 }
 

@@ -24,8 +24,9 @@
 
 package org.acplt.oncrpc.server;
 
-import org.acplt.oncrpc.*;
 import java.io.IOException;
+
+import org.acplt.oncrpc.OncRpcException;
 
 /**
  * The abstract <code>OncRpcServerStub</code> class is the base class to
@@ -115,6 +116,12 @@ public abstract class OncRpcServerStub {
     public void run(OncRpcServerTransport [] transports) {
         int size = transports.length;
         for ( int idx = 0; idx < size; ++idx ) {
+        	/*
+        	 * Give the authentication schemes to the actual transport,
+        	 * as they will initiate message handling including the authentication
+        	 * part.
+        	 */
+        	transports[idx].setAuthenticationSchemes(this.authenticationSchemes);
             transports[idx].listen();
         }
         //
@@ -183,6 +190,21 @@ public abstract class OncRpcServerStub {
     }
 
 	/**
+	 * Registers a custom authentication scheme to the authentication scheme repository
+	 * of this ONC/RPC server stub.
+	 *  
+	 * @param authenticationScheme A custom authentication scheme.
+	 * @return <em>true</em>, if the passed authentication scheme has been added
+	 *         to the list of custom authentication schemes, <em>false</em>, if either
+	 *         <em>null</em>has been passed or there is already an authentication scheme
+	 *         registered for the authentication type of the passed one.
+	 */
+    public boolean registerAuthenticationScheme(OncRpcServerAuthScheme authenticationScheme)
+    {
+    	return this.authenticationSchemes.registerScheme(authenticationScheme);
+    }
+    
+	/**
 	 * Set the character encoding for deserializing strings.
 	 *
 	 * @param characterEncoding the encoding to use for deserializing strings.
@@ -211,6 +233,13 @@ public abstract class OncRpcServerStub {
 	 * the system's default encoding should be used.
 	 */
 	private String characterEncoding;
+	
+	/**
+	 * Authentication scheme repository providing authentication handlers for both
+	 * the standard authentication types (<em>none</em>, <em>short</em> and <em>unix (system)</em>)
+	 * and the registered custom authentication schemes.
+	 */
+	private final OncRpcServerAuthSchemes authenticationSchemes = new OncRpcServerAuthSchemes();
 
 }
 // End of OncRpcServerStub.java

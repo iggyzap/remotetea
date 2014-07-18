@@ -25,6 +25,7 @@
 package org.acplt.oncrpc.server;
 
 import org.acplt.oncrpc.*;
+
 import java.io.IOException;
 
 /**
@@ -44,6 +45,11 @@ import java.io.IOException;
  */
 public class OncRpcServerCallMessage extends OncRpcCallMessage {
 
+	public OncRpcServerCallMessage(OncRpcServerAuthSchemes authenticationSchemes)
+	{
+		this.authenticationSchemes = authenticationSchemes;
+	}
+	
     /**
      * Decodes -- that is: deserializes -- a ONC/RPC message header object
      * from a XDR stream according to RFC 1831.
@@ -55,6 +61,8 @@ public class OncRpcServerCallMessage extends OncRpcCallMessage {
     */
     public void xdrDecode(XdrDecodingStream xdr)
            throws OncRpcException, IOException {
+    	int authenticationType = -1;
+    	
         messageId = xdr.xdrDecodeInt();
         //
         // Make sure that we are really decoding an ONC/RPC message call
@@ -78,20 +86,52 @@ public class OncRpcServerCallMessage extends OncRpcCallMessage {
         program = xdr.xdrDecodeInt();
         version = xdr.xdrDecodeInt();
         procedure = xdr.xdrDecodeInt();
-        //
-        // Last comes the authentication data. Note that the "factory" hidden
-        // within xdrNew() will graciously recycle any old authentication
-        // protocol handling object if it is of the same authentication type
-        // as the new one just coming in from the XDR wire.
-        //
-        auth = OncRpcServerAuth.xdrNew(xdr, auth);
+        
+        /*
+         * Last comes the authentication data.
+         * First the requested authentication type is decoded.
+         * If we already have an authentication handler and the authentication
+         * handler matches the requested authentication type, we reuse it.
+         * Otherwise we ask the authentication scheme repository for a new matching
+         * authentication handler.
+         */
+        authenticationType = xdr.xdrDecodeInt();
+        
+        if ( (this.auth == null)
+        		|| (this.auth.getAuthenticationType() != authenticationType) )
+        {
+        	this.auth = this.authenticationSchemes.getNewHandler(authenticationType);
+        }
+        
+        /*
+         * If we have an authentication handler at this point, we let it
+         * process the xdr stream and the provided authentication.
+         * Otherwise we raise an exception. 
+         */
+        if ( this.auth != null )
+        {
+        	this.auth.xdrDecodeCredVerf(xdr);
+        }
+        else
+        {
+            //
+            // In case of an unknown or unsupported type, throw an exception.
+            // Note: using AUTH_REJECTEDCRED is in sync with the way Sun's
+            // ONC/RPC implementation does it. But don't ask me why they do
+            // it this way...!
+            //
+            throw(new OncRpcAuthenticationException(
+                          OncRpcAuthStatus.ONCRPC_AUTH_REJECTEDCRED));
+        }
     }
 
     /**
      * Contains the authentication protocol handling object retrieved together
      * with the call message itself.
      */
-    public OncRpcServerAuth auth;
+    public OncRpcServerAuth auth = null;
+    
+    private OncRpcServerAuthSchemes authenticationSchemes = null;
 
 }
 

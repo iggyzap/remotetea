@@ -35,7 +35,7 @@ import java.io.IOException;
  * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:51 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
-public final class OncRpcServerAuthNone extends OncRpcServerAuth {
+public final class OncRpcServerAuthNone implements OncRpcServerAuth {
 
     /**
      * Returns the type (flavor) of {@link OncRpcAuthType authentication}

@@ -83,13 +83,14 @@ public class OncRpcCallInformation {
      */
     protected OncRpcCallInformation(OncRpcServerTransport transport) {
         this.transport = transport;
+        this.callMessage = new OncRpcServerCallMessage(this.transport.getAuthenticationSchemes());
     }
 
     /**
      * Contains the call message header from ONC/RPC identifying this
      * particular call.
      */
-    public OncRpcServerCallMessage callMessage = new OncRpcServerCallMessage();
+    public OncRpcServerCallMessage callMessage = null;
 
     /**
      * Internet address of the peer from which we received an ONC/RPC call

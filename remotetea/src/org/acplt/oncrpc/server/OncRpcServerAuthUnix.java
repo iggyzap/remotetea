@@ -35,47 +35,33 @@ import java.io.IOException;
  * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:51 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
-public final class OncRpcServerAuthUnix extends OncRpcServerAuth {
+public final class OncRpcServerAuthUnix implements OncRpcServerAuth {
 
     /**
      * Contains timestamp as supplied through credential.
      */
-    public int stamp;
+    public int stamp = -1;
 
     /**
      * Contains the machine name of caller supplied through credential.
      */
-    public String machinename;
+    public String machinename = null;
 
     /**
      * Contains the user ID of caller supplied through credential.
      */
-    public int uid;
+    public int uid = -1;
 
     /**
      * Contains the group ID of caller supplied through credential.
      */
-    public int gid;
+    public int gid = -1;
 
     /**
      * Contains a set of group IDs the caller belongs to, as supplied
      * through credential.
      */
-    public int [] gids;
-
-    /**
-     * Constructs an <code>OncRpcServerAuthUnix</code> object and pulls its
-     * state off an XDR stream.
-     *
-     * @param xdr XDR stream to retrieve the object state from.
-     *
-     * @throws OncRpcException if an ONC/RPC error occurs.
-     * @throws IOException if an I/O error occurs.
-     */
-    public OncRpcServerAuthUnix(XdrDecodingStream xdr)
-           throws OncRpcException, IOException {
-        xdrDecodeCredVerf(xdr);
-    }
+    public int [] gids = null;
 
     /**
      * Returns the type (flavor) of {@link OncRpcAuthType authentication}
@@ -184,7 +170,7 @@ public final class OncRpcServerAuthUnix extends OncRpcServerAuth {
      * Contains the shorthand authentication verifier (credential) to return
      * to the caller to be used with the next ONC/RPC calls.
      */
-    private byte [] shorthandVerf;
+    private byte [] shorthandVerf = null;
 
 }
 

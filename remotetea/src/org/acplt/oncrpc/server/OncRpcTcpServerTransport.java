@@ -352,7 +352,9 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
                         // Let the newly created transport object handle this
                         // connection. Note that it will create its own
                         // thread for handling.
+                        // Before, we pass the provided authentication schemes.
                         //
+                        transport.setAuthenticationSchemes(getAuthenticationSchemes());
                         transport.listen();
                     } catch ( OncRpcException e ) {
                     } catch ( IOException e ) {

@@ -35,21 +35,7 @@ import java.io.IOException;
  * @version $Revision: 1.1 $ $Date: 2003/08/13 12:03:51 $ $State: Exp $ $Locker:  $
  * @author Harald Albrecht
  */
-public final class OncRpcServerAuthShort extends OncRpcServerAuth {
-
-    /**
-     * Constructs an <code>OncRpcServerAuthShort</code> object and pulls its
-     * state off an XDR stream.
-     *
-     * @param xdr XDR stream to retrieve the object state from.
-     *
-     * @throws OncRpcException if an ONC/RPC error occurs.
-     * @throws IOException if an I/O error occurs.
-     */
-    public OncRpcServerAuthShort(XdrDecodingStream xdr)
-           throws OncRpcException, IOException {
-        xdrDecodeCredVerf(xdr);
-    }
+public final class OncRpcServerAuthShort implements OncRpcServerAuth {
 
     /**
      * Returns the type (flavor) of {@link OncRpcAuthType authentication}
@@ -151,13 +137,13 @@ public final class OncRpcServerAuthShort extends OncRpcServerAuth {
     /**
      * Contains the shorthand credential sent by the caller.
      */
-    private byte [] shorthandCred;
+    private byte [] shorthandCred = null;
 
     /**
      * Contains the shorthand authentication verifier (credential) to return
      * to the caller to be used with the next ONC/RPC calls.
      */
-    private byte [] shorthandVerf;
+    private byte [] shorthandVerf = null;
 
 }
 
