@@ -47,7 +47,13 @@ public class OncRpcServerCallMessage extends OncRpcCallMessage {
 
 	public OncRpcServerCallMessage(OncRpcServerAuthSchemes authenticationSchemes)
 	{
-		this.authenticationSchemes = authenticationSchemes;
+		/*
+		 * If for any reason the passed authentication scheme repository is null,
+		 * we use the default repository. Otherwise we take over the passed one.
+		 * This ensures the presence of at least the standard authentication schemes
+		 * implemented by this package.
+		 */
+		this.authenticationSchemes = (authenticationSchemes == null ? OncRpcServerAuthSchemes.getDefaultRepository() : authenticationSchemes);
 	}
 	
     /**

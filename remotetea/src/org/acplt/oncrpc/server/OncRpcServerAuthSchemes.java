@@ -205,6 +205,11 @@ final class OncRpcServerAuthSchemes {
         return authenticationHandler;
 	}
 	
+	static OncRpcServerAuthSchemes getDefaultRepository()
+	{
+		return defaultRepository;
+	}
+	
 	/**
 	 * Simple node used by the repository to build and parse the custom authentication 
 	 * scheme list.
@@ -237,6 +242,11 @@ final class OncRpcServerAuthSchemes {
 		
 	}
 
+	/**
+	 * The global default repository of authentication schemes.
+	 */
+	private static final OncRpcServerAuthSchemes defaultRepository = new OncRpcServerAuthSchemes();
+	
 	/**
 	 * The head of the custom authentication scheme list.
 	 */
