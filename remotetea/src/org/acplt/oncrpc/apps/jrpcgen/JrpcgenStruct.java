@@ -36,6 +36,11 @@ import java.util.Vector;
 public class JrpcgenStruct {
 
     /**
+     * Global next available id for an unnamed inner structure.
+     */
+    private static long NEXT_UNNAMED_STRUCT_ID = 1;
+    
+    /**
      * Structure identifier.
      */
     public String identifier;
@@ -58,11 +63,37 @@ public class JrpcgenStruct {
      * its attribute elements.
      *
      * @param identifier Identifier to be declared.
-     * @param elements Vector of atrribute elements of class
+     * @param elements Vector of attribute elements of class
      *   {@link JrpcgenDeclaration}.
      */
-    public JrpcgenStruct(String identifier, Vector elements) {
-        this.identifier = identifier;
+    public JrpcgenStruct(String identifier, Vector elements)
+    {
+        /*
+         * Is the passed identifer 'null', identifying an unnamed structure
+         * definition?
+         */
+        if ( identifier != null )
+        {
+            /*
+             * No:
+             * Simply take over the passed identifier.
+             */
+            this.identifier = identifier;
+        }
+        else
+        {
+            /*
+             * Yes:
+             * In this case an identifier for the unnamed struct is generated.
+             */
+            this.identifier = "unnamed_struct_" + NEXT_UNNAMED_STRUCT_ID;
+            
+            /*
+             * Increment the next unnamed struct id.
+             */
+            ++NEXT_UNNAMED_STRUCT_ID;
+        }
+
         this.elements = elements;
     }
 
