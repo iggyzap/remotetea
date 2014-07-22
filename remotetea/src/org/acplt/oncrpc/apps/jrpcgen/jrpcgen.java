@@ -61,6 +61,8 @@ public class jrpcgen {
         System.out.println("  -d <dir>        specify directory where to place generated source code files");
         System.out.println("  -p <package>    specify package name for generated source code files");
         System.out.println("  -s <classname>  specify class name of server proxy stub");
+        System.out.println("  -t              create TCP Server only");
+        System.out.println("  -u              create UDP Server only");
         System.out.println("  -ser            tag generated XDR classes as serializable");
         System.out.println("  -bean           generate accessors for usage as bean, implies -ser");
         System.out.println("  -noclamp        do not clamp version number in client method stubs");
@@ -69,6 +71,7 @@ public class jrpcgen {
         System.out.println("  -nobackup       do not make backups of old source code files");
         System.out.println("  -noclient       do not create client proxy stub");
         System.out.println("  -noserver       do not create server proxy stub");
+        System.out.println("  -noxdr          do not create XDR datatype classes");
         System.out.println("  -parseonly      parse x-file only but do not create source code files");
         System.out.println("  -verbose        enable verbose output about what jrpcgen is doing");
         System.out.println("  -version        print jrpcgen version and exit");
@@ -119,7 +122,7 @@ public class jrpcgen {
      * as well as for constants and enumeration members. This static attribute
      * is directly manipulated by the parser.
      */
-    public static Hashtable globalIdentifiers = new Hashtable();
+    public static GlobalIdentifierTable globalIdentifiers = new GlobalIdentifierTable();
 
     /**
      * Disable automatic backup of old source code files, if <code>true</code>.
@@ -216,6 +219,21 @@ public class jrpcgen {
      * Name of class containing the ONC/RPC server stubs.
      */
     public static String serverClass = null;
+
+    /**
+     * Do not generate XDR datatype classes if <code>true</code>.
+     */
+    public static boolean noXdr = false;
+
+    /**
+     * Create TCP-Server only <code>true</code>.
+     */
+    public static boolean serverTcpOnly = false;
+
+    /**
+     * Create TCP-Server only <code>true</code>.
+     */
+    public static boolean serverUdpOnly = false;
 
     /**
      * Name of class containing the ONC/RPC client stubs.
@@ -420,7 +438,7 @@ public class jrpcgen {
             // dump it: this will be the job of a later call when the proper
             // enclosure is in the works.
             //
-            JrpcgenConst dc = (JrpcgenConst) globalIdentifiers.get(dependencyIdentifier);
+            JrpcgenConst dc = (JrpcgenConst) globalIdentifiers.identifiers.get(dependencyIdentifier);
             if ( dc != null ) {
                 if ( !c.enclosure.equalsIgnoreCase(dc.enclosure) ) {
                     //
@@ -474,7 +492,7 @@ public class jrpcgen {
         out.println(" */");
         out.println("public interface " + baseClassname + " {");
 
-        Enumeration globals = globalIdentifiers.elements();
+        Enumeration globals = globalIdentifiers.identifiers.elements();
         while ( globals.hasMoreElements() ) {
             Object o = globals.nextElement();
             if ( o instanceof JrpcgenConst ) {
@@ -620,7 +638,7 @@ public class jrpcgen {
         // using ints in the Java language.
         //
         if ( !isBase ) {
-            Object o = globalIdentifiers.get(decl.type);
+            Object o = globalIdentifiers.identifiers.get(decl.type);
             if ( o instanceof JrpcgenEnum ) {
                 isBase = true;
                 syllable = "Int";
@@ -855,7 +873,7 @@ public class jrpcgen {
      * @return data type identifier.
      */
     public static String checkForSpecials(String dataType) {
-        if ( globalIdentifiers.get(dataType) instanceof JrpcgenEnum ) {
+        if ( globalIdentifiers.identifiers.get(dataType) instanceof JrpcgenEnum ) {
             return "int";
         } else if ( "opaque".equals(dataType) ) {
             return "byte";
@@ -886,7 +904,7 @@ public class jrpcgen {
             // It's an identifier: we now need to find out in which
             // enclosure it lives, so we can return a qualified identifier.
             //
-            Object id = jrpcgen.globalIdentifiers.get(value);
+            Object id = jrpcgen.globalIdentifiers.identifiers.get(value);
             if ( (id != null)
                  && (id instanceof JrpcgenConst) ) {
                 JrpcgenConst c = (JrpcgenConst) id;
@@ -1428,7 +1446,7 @@ public class jrpcgen {
      * are emitted to a single interface.
      */
     public static void dumpClasses() {
-        Enumeration globals = globalIdentifiers.elements();
+        Enumeration globals = globalIdentifiers.identifiers.elements();
         while ( globals.hasMoreElements() ) {
             Object o = globals.nextElement();
             if ( o instanceof JrpcgenEnum ) {
@@ -1763,6 +1781,17 @@ public class jrpcgen {
         //
         // Generate constructors...
         //
+        out.println("    /**");
+        out.println("     * Constructs a <code>" + clientClass + "</code> client stub proxy dummy.");
+        out.println("     * @throws OncRpcException if an ONC/RPC error occurs.");
+        out.println("     * @throws IOException if an I/O error occurs.");
+        out.println("     */");
+        out.println("    public " + clientClass + "() throws OncRpcException, IOException {");
+        out.println("        super(null);");
+        out.println("    }");
+        out.println();
+
+        
         out.println("    /**");
         out.println("     * Constructs a <code>" + clientClass + "</code> client stub proxy object");
         out.println("     * from which the " + programInfo.programId + " remote program can be accessed.");
@@ -2183,9 +2212,24 @@ public class jrpcgen {
         out.println("        };");
 
         out.println("        transports = new OncRpcServerTransport [] {");
-        out.println("            new OncRpcUdpServerTransport(this, bindAddr, port, info, 32768),");
-        out.println("            new OncRpcTcpServerTransport(this, bindAddr, port, info, 32768)");
+
+        boolean isFirstTransport = true;
+        if (serverUdpOnly || (!serverTcpOnly)) {
+            out.println("            new OncRpcUdpServerTransport(this, bindAddr, port, info, 32768)");
+            isFirstTransport = false;
+        }
+
+        if (serverTcpOnly || (!serverUdpOnly)) {
+
+            if (!isFirstTransport)
+                out.println("            ,");
+
+            out.println("            new OncRpcTcpServerTransport(this, bindAddr, port, info, 32768)");
+            isFirstTransport = false;
+        }
+
         out.println("        };");
+        
         //
         // Finish constructor method...
         //
@@ -2204,6 +2248,9 @@ public class jrpcgen {
             out.print(versionIdx == 0 ? "        " : "        } else ");
             out.println("if ( version == " + versionInfo.versionNumber + " ) {");
             int procSize = versionInfo.procedures.size();
+            
+            boolean hasNullProc = false;
+
             out.println("            switch ( procedure ) {");
             for ( int procIdx = 0; procIdx < procSize; ++procIdx ) {
                 //
@@ -2214,11 +2261,24 @@ public class jrpcgen {
                 //
                 JrpcgenProcedureInfo procInfo = (JrpcgenProcedureInfo)
                     versionInfo.procedures.elementAt(procIdx);
+                
+                if ("0".equals(checkForEnumValue(procInfo.procedureNumber)))
+                    hasNullProc = true;
+
                 out.println("            case " + checkForEnumValue(procInfo.procedureNumber) + ": {");
                 dumpServerStubMethodCall(out, procInfo);
                 out.println("                break;");
                 out.println("            }");
             }
+            
+            if (!hasNullProc) {
+                out.println("            case 0: {");
+                out.println("                call.retrieveCall(XdrVoid.XDR_VOID);");
+                out.println("                call.reply(XdrVoid.XDR_VOID);");
+                out.println("                break;");
+                out.println("            }");
+            }
+
             out.println("            default:");
             out.println("                call.failProcedureUnavailable();");
             out.println("            }");
@@ -2252,15 +2312,21 @@ public class jrpcgen {
      * x-file.
      */
     public static void dumpFiles() {
-        dumpConstants();
-        dumpClasses();
-        for ( int i = 0; i < programInfos.size(); ++i ) {
-            JrpcgenProgramInfo progInfo =
-                (JrpcgenProgramInfo) programInfos.elementAt(i);
-            if ( !noClient ) {
+
+        if ((!noServer) || (!noClient)) {
+            dumpConstants();
+        }
+
+        if (!noXdr) {
+            dumpClasses();
+        }
+
+        for (int i = 0; i < programInfos.size(); ++i) {
+            JrpcgenProgramInfo progInfo = (JrpcgenProgramInfo) programInfos.elementAt(i);
+            if (!noClient) {
                 dumpClient(progInfo);
             }
-            if ( !noServer ) {
+            if (!noServer) {
                 dumpServer(progInfo);
             }
         }
@@ -2335,6 +2401,12 @@ public class jrpcgen {
                 noClient = true;
             } else if ( arg.equals("-noserver") ) {
                 noServer = true;
+            } else if (arg.equals("-noxdr")) {
+                noXdr = true;
+            } else if (arg.equals("-t")) {
+                serverTcpOnly = true;
+            } else if (arg.equals("-u")) {
+                serverUdpOnly = true;
             } else if ( arg.equals("-parseonly") ) {
                 parseOnly = true;
             } else if ( arg.equals("-verbose") ) {
@@ -2369,7 +2441,31 @@ public class jrpcgen {
             System.exit(1);
         }
         String xfilename = args[argIdx];
-        xFile = new File(".", xfilename);
+        
+        /*
+         * We accept both, relative and absolute paths.
+         * Therefore we look whether or not the filename starts
+         * with the separator character.
+         * 
+         * A relative path will get the current file path as
+         * its root.
+         */
+        if ( xfilename.startsWith(File.separator) )
+        {
+            /*
+             * We got an absolute path.
+             */
+            xFile = new File(xfilename);
+        }
+        else
+        {
+            /*
+             * We got a relative path. The current
+             * directory will be used as the root.
+             */
+            xFile = new File(".",xfilename);
+        }
+
         //
         // Try to parse the file and generate the different class source
         // code files...
@@ -2440,6 +2536,98 @@ public class jrpcgen {
         }
     }
 
+    public static class GlobalIdentifierTable {
+        
+        private Hashtable identifiers = new Hashtable();
+        
+        public Object get(Object key)
+        {
+            return this.identifiers.get(key);
+        }
+        
+        public Object put(Object key, Object value)
+        {
+            Object existingEntry = null;
+            
+            /*
+             * If we shall insert a declaration, where the type
+             * equals the identifier, we will have a look at it.
+             * 
+             * Otherwise we just put it into the table.
+             */
+            if ( ! (value instanceof JrpcgenDeclaration) )
+            {
+                existingEntry = this.identifiers.put(key, value);
+            }
+            else
+            {
+                /*
+                 * Let's see, whether there is a typedef on a struct,
+                 * enum or union in case type and identifier of the declaration
+                 * are equal.
+                 */
+                JrpcgenDeclaration declaration = (JrpcgenDeclaration)value;
+                
+                /*
+                 * Does the identifier equals the type?
+                 */
+                if ( ! declaration.identifier.equals(declaration.type) )
+                {
+                    /*
+                     * No.
+                     * Then just put it into the table.
+                     */
+                    existingEntry = this.identifiers.put(key, value);
+                }
+                else
+                {
+                    /*
+                     * Do we find an entry to the type?
+                     */
+                    existingEntry = this.identifiers.get(declaration.type);
+                    
+                    if ( existingEntry == null )
+                    {
+                        /*
+                         * No, then we print a warning.
+                         */
+                        System.out.println("WARNING: typedef alias '"+declaration.type+"' without previous definition of the type will be ignored");
+                    }
+                    else
+                    {
+                        /*
+                         * Is the existing entry a struct, enum or union?
+                         * Then an appropriate warning can be printed.
+                         * Otherwise a genric warning is printed.
+                         */
+                        if ( existingEntry instanceof JrpcgenStruct )
+                        {
+                            System.out.println("WARNING: typedef struct alias '"+declaration.type+"' will be ignored");
+                        }
+                        else if ( existingEntry instanceof JrpcgenEnum )
+                        {
+                            System.out.println("WARNING: typedef enum alias '"+declaration.type+"' will be ignored");
+                        }
+                        else if ( existingEntry instanceof JrpcgenUnion )
+                        {
+                            System.out.println("WARNING: typedef union alias '"+declaration.type+"' will be ignored");
+                        }
+                        else
+                        {
+                            System.out.println("WARNING: typedef alias '"+declaration.type+"' will be ignored");
+                        }
+                        
+                        /*
+                         * As the declaration will be ignored, 'null' is returned to avoid an error.
+                         */
+                        existingEntry = null;
+                    }
+                }
+            }
+            
+            return existingEntry;
+        }
+    }
 }
 
     /**
