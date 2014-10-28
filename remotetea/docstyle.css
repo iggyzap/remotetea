@@ -53,6 +53,30 @@ h2 {
   border-bottom-color: #AAAAAA;
 }
 
+h3 {
+  font-size: 120%;
+  font-weight: bold;
+  color: #000080;
+
+  margin: 2ex 0 2ex 0;
+  padding: 0px 0px 3px 10px;
+  width: 15em;
+
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  border-bottom-color: #AAAAAA;
+}
+
+h4 {
+  font-size: 110%;
+  font-weight: bold;
+  color: #000080;
+
+  margin: 2ex 0 2ex 0;
+  padding: 0px 0px 3px 10px;
+  width: 15em;
+}
+
 p.important {
   font-weight: bold;
   color: #CC0000;
@@ -108,10 +132,33 @@ li > span {
   color: #000000;
 }
 
+li > div {
+	color: #000000;
+}
+
+em {
+  font-size: 90%;
+}
+
 div.annotation {
   font-size: 90%;
   font-style: italic;
   margin: .25ex 1em 0ex 2em;
+}
+
+pre.code {
+	border: 1px dotted #CCCCCC;
+	background-color: #EEEEEE;
+	margin: 1em 1em 1em 2em;
+	padding: 1em 1em 1em 1em;
+}
+
+table.cli {
+	margin-top: 1em;
+}
+
+table.cli td + td {
+	padding-left: 2em;
 }
 
 /* End of docstyle.css */

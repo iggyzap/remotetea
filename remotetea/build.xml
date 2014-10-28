@@ -14,7 +14,7 @@
 	<property name="javadocDir" value="javadoc" />
 	<property name="distDir" value="dist" />
 	
-	<property name="distVersion" value="1.0.8" />
+	<property name="distVersion" value="1.1.0" />
 
 	<!-- -->
 	<!-- ** SF patch #943219: add compile target ** -->

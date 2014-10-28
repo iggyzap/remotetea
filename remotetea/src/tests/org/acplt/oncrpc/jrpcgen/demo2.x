@@ -29,4 +29,9 @@ struct TREE2 {
 	struct TREE2 *right;
 };
 
+/* Check typedefs */
+typedef enum ENUMBAZ2 ENUMBAZ2;
+typedef struct TREE2 TREE2;
+typedef struct TREE2 SimpleTree;
+
 /* End of file demo2.x */

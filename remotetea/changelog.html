@@ -8,14 +8,100 @@
   </head>
   <body>
 
-
-<p class="revision">CVS info:
-$Revision: 1.7 $ $Date: 2008/01/02 15:12:47 $ $State: Exp $ $Locker:  $</p>
-
 <h1>Change Log <q>Remote Tea</q></h1>
 
 <p><a class="ext" href="http://remotetea.sourceforge.net">Remote Tea
 Project Home Page</a> on SourceForge.</p>
+
+<h2>Version 1.1.0:</h2>
+
+<p>This is a minor feature/maintenance release.</p>
+
+<h3>New features</h3>
+
+<h4>Client-side</h4>
+
+<ul>
+	<li><span>The ONC/RPC client stub implementation has been extended by the method <code>nullproc()</code> as a convenient way
+	to launch null procedure calls.</span></li>
+	<li><span>The instance of an ONC/RPC client stub implementation can now be bound to other ONC/RPC client instances during
+	its lifetime via the method <code>setClient()</code>. Besides, a previously used ONC/RPC client instance will be closed by
+	this method.</span></li>  
+</ul>
+
+<h4>Server-side</h4>
+
+<ul>
+	<li><span>With this release custom authentication schemes can be defined and registered to an ONC/RPC
+	server stub.</span></li>
+</ul>
+
+<h4>jrpcgen</h4>
+
+<ul>
+	<li><div>jrpcgen considers and realizes the following new command line options on invocation:
+	<table class="cli">
+		<tr>
+			<td>-t</td>
+			<td>create TCP server only</td>
+		</tr>
+		<tr>
+			<td>-u</td>
+			<td>create UDP server only</td>
+		</tr>
+		<tr>
+			<td>-noxdr</td>
+			<td>do not create XDR datatype classes</td>
+		</tr>
+	</table>
+	</div></li>
+</ul>
+
+<h3>Maintenance</h3>
+
+<h4>Server-side</h4>
+
+<ul>
+	<li><span>Authentication failures such as <em>bad credentials</em> and <em>bad verifier</em>
+	within ONC/RPC authentication handling have not been reported back to clients, properly. Such authentication
+	failures lead now to an appropriate	authentication failure reply to clients.</span></li>
+</ul>
+
+<h4>jrpcgen</h4>
+
+<ul>
+	<li><div>Consider the following quite legal definitions in an .x-file:
+	<div>
+<pre class="code">
+struct MyStructure {
+  int x;
+  int y;
+};
+
+typedef struct MyStructure MyStructure;
+</pre>
+	</div>
+	The <code>typedef</code> caused an error recognizing a duplicate identifier. Such a <code>typedef</code> is now
+	recognized and silently ignored.</div>
+	<div>Keep in mind that a typedef such as
+	<div>
+<pre class="code">
+typedef struct MyStructure TMyStructure;
+</pre>
+	</div>
+	still leads to the generation of the java class:
+	<div>
+<pre class="code">
+class TMyStructure {
+	
+	public MyStructure value;
+	
+...
+}
+</pre>
+	</div>
+	</div></li>
+</ul>
 
 <h2>Version 1.0.7:</h2>
 
