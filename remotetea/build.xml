@@ -10,23 +10,32 @@
 
 	<!-- -->
 	<property name="buildDir" value="classes" />
-	<property name="srcDir" value="src" />
+	<property name="srcDir" value="src/main/java" />
+	<property name="testSrcDir" value="src" />
 	<property name="javadocDir" value="javadoc" />
 	<property name="distDir" value="dist" />
 	
-	<property name="distVersion" value="1.1.0" />
+	<property name="distVersion" value="1.1.1" />
 
+	<target name="clean" description="cleans up all build artifacts">
+		<delete dir="${distDir}"/>
+		<delete dir="${javadocDir}"/>
+		<delete dir="${buildDir}"/>
+	</target>
+		
 	<!-- -->
 	<!-- ** SF patch #943219: add compile target ** -->
 	<!-- Compile classes -->
 	<target name="compile" description="compile classes">
 		<mkdir dir="${buildDir}"/>
 		<javac
-				srcdir="${srcDir}"
 				destdir="${buildDir}"
 				debug="true"
 				deprecation="true"
 				optimize="true">
+			<src path="oncrpc/${srcDir}" />
+			<src path="jrpcgen/${srcDir}" />
+			<src path="jportmap/${srcDir}" />
 		</javac>
 	</target>
 
@@ -93,11 +102,19 @@
 		<delete dir="${javadocDir}"/>
 		<mkdir dir="${javadocDir}" />
 		<javadoc
-				sourcepath="${srcDir}"
 				destdir="${javadocDir}"
 				classpath="${buildDir}"
 				private="true"
 				author="on">
+			<fileset dir="oncrpc/${srcDir}">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="jrpcgen/${srcDir}">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="jportmap/${srcDir}">
+				<include name="**/*.java" />
+			</fileset>
 			<package name="org.acplt.oncrpc" />
 			<package name="org.acplt.oncrpc.server" />
 			<package name="org.acplt.oncrpc.web" />
@@ -143,19 +160,17 @@
 	</target>
 
 	<!-- compile Jrpcgen test example and compile resulting Java files -->
-	<target name="jrpcgen-test" description="run jrpcgen test">
+	<target name="jrpcgen-test" description="run jrpcgen test" depends="compile">
 		<echo>Cleaning up example mess...</echo>
 		<delete><!-- make a fresh start so we don't get bitten by damaged example source code -->
-			<fileset dir="${srcDir}/tests/org/acplt/oncrpc/jrpcgen"
+			<fileset dir="${testSrcDir}/tests/org/acplt/oncrpc/jrpcgen"
 				     includes="*.java"
 			         excludes="demoClientExample.java demoServer.java"/>
 		</delete>
-		<echo>Compiling Jrpcgen protocol compiler...</echo>
-		<antcall target="compile"></antcall>
 		<echo>Running Jrpcgen x protocol compiler on demo.x...</echo>
 		<java classname="org.acplt.oncrpc.apps.jrpcgen.jrpcgen"
 		      classpath="${buildDir}"
-			  dir="${srcDir}/tests/org/acplt/oncrpc/jrpcgen"
+			  dir="${testSrcDir}/tests/org/acplt/oncrpc/jrpcgen"
 			  fork="yes">
 			<arg value="-verbose"/>
 			<arg value="-ser"/>
@@ -168,7 +183,7 @@
 		<echo>Running Jrpcgen x protocol compiler on demo2.x...</echo>
 		<java classname="org.acplt.oncrpc.apps.jrpcgen.jrpcgen"
 		      classpath="${buildDir}"
-			  dir="${srcDir}/tests/org/acplt/oncrpc/jrpcgen"
+			  dir="${testSrcDir}/tests/org/acplt/oncrpc/jrpcgen"
 			  fork="yes">
 			<arg value="-verbose"/>
 			<arg value="-p"/>
@@ -178,7 +193,7 @@
 		</java>
 		<echo>Compiling example mess...</echo>
 		<javac
-				srcdir="${srcDir}/tests/org/acplt/oncrpc/jrpcgen"
+				srcdir="${testSrcDir}/tests/org/acplt/oncrpc/jrpcgen"
 				destdir="${buildDir}"
 				debug="true"
 				deprecation="true"

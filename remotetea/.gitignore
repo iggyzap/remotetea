@@ -1,0 +1,7 @@
+/target/
+/.settings/
+/classes/
+/dist/
+/javadoc/
+/.project
+/.classpath
