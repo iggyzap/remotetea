@@ -114,7 +114,7 @@ public class jrpcgen {
      * String containing date/time when a jrpcgen run was started. This string
      * is used in the headers of the generated source code files.
      */
-    public static final String startDate =
+    public static String startDate =
         (new SimpleDateFormat()).format(new Date());
 
     /**
@@ -255,6 +255,36 @@ public class jrpcgen {
      * instead of null reference.
      */
     public static boolean initStrings = false;
+
+    public static void reset()
+    {
+        startDate = (new SimpleDateFormat()).format(new Date());
+        globalIdentifiers = new GlobalIdentifierTable();
+        noBackups = false;
+        programInfos = null;
+        clampProgAndVers = true;
+        withCallInfo = false;
+        debug = false;
+        verbose = false;
+        parseOnly = false;
+        xFile = null;
+        destinationDir = new File(".");
+        currentFileWriter = null;
+        currentPrintWriter = null;
+        currentFilename = null;
+        packageName = null;
+        baseClassname = null;
+        noClient = false;
+        noServer = false;
+        serverClass = null;
+        noXdr = false;
+        serverTcpOnly = false;
+        serverUdpOnly = false;
+        clientClass = null;
+        makeSerializable = false;
+        makeBean = false;
+        initStrings = false;
+    }
 
 	/**
 	 * Creates a new source code file for a Java class based on its class

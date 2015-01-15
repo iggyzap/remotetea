@@ -63,7 +63,7 @@ public abstract class JRpcGeneratorBase extends AbstractMojo
     
     protected JRpcGeneratorBase()
     {
-        // jrpcgen.reset();
+        jrpcgen.reset();
     }
     
     protected void generateSources() throws MojoExecutionException
