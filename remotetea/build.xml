@@ -130,7 +130,7 @@
 		<echo>generating SF file packages for version ${distVersion}...</echo>
 		<mkdir dir="${distDir}"/>
 		<!-- binary plus documentation distribution -->
-		<zip zipfile="${distDir}/remotetea-bin-doc.zip">
+		<zip zipfile="${distDir}/remotetea-bin-doc-${distVersion}.zip">
 			<zipfileset dir="." prefix="remotetea/">
 				<include name="${buildDir}/*.jar" />
 				<include name="${javadocDir}/" />
@@ -144,7 +144,7 @@
 			</zipfileset>
 		</zip>
 		<!-- source only distribution -->
-		<zip zipfile="${distDir}/remotetea-src.zip">
+		<zip zipfile="${distDir}/remotetea-src-${distVersion}.zip">
 			<zipfileset dir="." prefix="remotetea/">
 				<include name=".project" />
 				<include name=".classpath" />
