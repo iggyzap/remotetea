@@ -129,6 +129,8 @@ public abstract class XdrUnion implements XdrAble {
      * a XDR stream in compliance to RFC 1832. Note that the common part is
      * deserialized after the variant part.
      *
+     * @param xdr An XDR encoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -140,6 +142,8 @@ public abstract class XdrUnion implements XdrAble {
      * a XDR stream in compliance to RFC 1832. Note that the common part is
      * deserialized after the variant part.
      *
+     * @param xdr An XDR decoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -151,6 +155,8 @@ public abstract class XdrUnion implements XdrAble {
      * a XDR stream in compliance to RFC 1832. Note that the variant part is
      * deserialized before the common part.
      *
+     * @param xdr An XDR encoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -162,6 +168,8 @@ public abstract class XdrUnion implements XdrAble {
      * a XDR stream in compliance to RFC 1832. Note that the variant part is
      * deserialized before the common part.
      *
+     * @param xdr An XDR decoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

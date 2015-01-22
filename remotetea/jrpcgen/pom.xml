@@ -7,7 +7,7 @@
 		<version>1.1.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>remotetea-jrpcgen</artifactId>
-	<name>Remote Tea :: jrpcgen</name>
+	<name>Remote Tea : ONC/RPC source generator</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.ant</groupId>
@@ -15,4 +15,5 @@
 			<version>1.9.4</version>
 		</dependency>
 	</dependencies>
+	<description>The source generator (jrpcgen) writes Java class files (type, client and server side classes) out of an ONC/RPC program specification in an x-file.</description>
 </project>

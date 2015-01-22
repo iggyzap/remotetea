@@ -39,6 +39,8 @@ public abstract class OncRpcMessage {
     /**
      * Constructs  a new <code>OncRpcMessage</code> object with default
      * values: a given message type and no particular message identifier.
+     * 
+     * @param messageId The message id used to match request with reply messages.
      */
     public OncRpcMessage(int messageId) {
         this.messageId = messageId;

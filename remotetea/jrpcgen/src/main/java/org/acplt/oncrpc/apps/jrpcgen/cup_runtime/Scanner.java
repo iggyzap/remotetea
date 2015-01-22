@@ -6,7 +6,7 @@ package org.acplt.oncrpc.apps.jrpcgen.cup_runtime;
  * of scanners implementing <code>Scanner</code> is facilitated.
  *
  * @version last updated 23-Jul-1999
- * @author David MacMahon <davidm@smartsc.com>
+ * @author David MacMahon {@literal <davidm@smartsc.com>}
  */
 
 /* *************************************************
@@ -20,6 +20,12 @@ package org.acplt.oncrpc.apps.jrpcgen.cup_runtime;
   <code>null</code>.
  ***************************************************/
 public interface Scanner {
-    /** Return the next token, or <code>null</code> on end-of-file. */
+    /** 
+     * Delivers the next token.
+     * 
+     * @return The next token, or <code>null</code> on end-of-file.
+     * 
+     * @throws Exception if any error occurs.
+     */
     public Symbol next_token() throws java.lang.Exception;
 }

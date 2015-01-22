@@ -45,10 +45,10 @@ import java.io.IOException;
 public class OncRpcClientReplyMessage extends OncRpcReplyMessage {
 
     /**
-     * Initializes a new <code>OncRpcReplyMessage</code> object to represent
-     * an invalid state. This default constructor should only be used if in the
-     * next step the real state of the reply message is immediately decoded
-     * from a XDR stream.
+     * Initializes a new RPC reply message object to represent
+     * an invalid state {@link OncRpcReplyMessage}. This default constructor
+     * should only be used if in the next step the real state of the reply
+     * message is immediately decoded from a XDR stream.
      *
      * @param auth Client-side authentication protocol handling object which
      *   is to be used when decoding the verifier data contained in the reply.
@@ -113,6 +113,8 @@ public class OncRpcClientReplyMessage extends OncRpcReplyMessage {
      * Decodes -- that is: deserializes -- a ONC/RPC message header object
      * from a XDR stream.
      *
+     * @param xdr An instance of class {@link XdrDecodingStream}.
+     *  
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

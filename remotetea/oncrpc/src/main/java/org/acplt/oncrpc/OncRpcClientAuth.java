@@ -44,7 +44,7 @@ import java.io.IOException;
  * client.setAuth(auth);
  * </pre>
  *
- * The {@link OncRpcClientAuthUnix authentication <code>AUTH_UNIX</code>} will
+ * The {@link OncRpcClientAuthUnix} authentication <code>AUTH_UNIX</code>} will
  * handle shorthand credentials (of type <code>AUTH_SHORT</code> transparently).
  * If you do not set any authentication object after creating an ONC/RPC client
  * object, <code>AUTH_NONE</code> is used automatically.

@@ -45,6 +45,8 @@ public class XdrTcpEncodingStream extends XdrEncodingStream {
      * @param streamingSocket Socket to which XDR data is sent.
      * @param bufferSize Size of packet buffer for temporarily storing
      *   outgoing XDR data.
+     *   
+     * @throws IOException if the passed socket instance fails to provide an output stream.
      */
     public XdrTcpEncodingStream(Socket streamingSocket,
                                 int bufferSize)
@@ -144,6 +146,9 @@ public class XdrTcpEncodingStream extends XdrEncodingStream {
      * call in a batch, which might be trigger a reply). Otherwise, you will
      * most probably cause an interaction deadlock between client and server.
      *
+     * @param flush Whether to flush then actual stream content immediately or to
+     *        wait for further records.
+     *         
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

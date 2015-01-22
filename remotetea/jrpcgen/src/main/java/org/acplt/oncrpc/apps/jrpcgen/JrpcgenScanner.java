@@ -268,11 +268,11 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
   private int yycolumn; 
 
   /** 
-   * yy_atBOL == true <=> the scanner is currently at the beginning of a line
+   * yy_atBOL == true &lt;=&gt; the scanner is currently at the beginning of a line
    */
   private boolean yy_atBOL;
 
-  /** yy_atEOF == true <=> the scanner has returned a value for EOF */
+  /** yy_atEOF == true &lt;=&gt; the scanner has returned a value for EOF */
   private boolean yy_atEOF;
 
   /** denotes if the user-EOF-code has already been executed */
@@ -369,7 +369,7 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
    *
    * @return      the next character of the input stream, EOF if the
    *              end of the stream is reached.
-   * @exception   IOException  if any I/O-Error occurs
+   * @throws java.io.IOException if any kind of I/O-Error occurs
    */
   private int yy_advance() throws java.io.IOException {
 
@@ -417,6 +417,8 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
 
   /**
    * Closes the input stream.
+   * 
+   * @throws java.io.IOException if any kind of IO error occurs.
    */
   final public void yyclose() throws java.io.IOException {
     yy_atEOF = true;            /* indicate end of file */
@@ -426,7 +428,7 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
 
 
   /**
-   * Returns the current lexical state.
+   * @return The current lexical state.
    */
   final public int yystate() {
     return yy_lexical_state;
@@ -443,14 +445,14 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
 
 
   /**
-   * Returns the text matched by the current regular expression.
+   * @return The text matched by the current regular expression.
    */
   final public String yytext() {
     return new String( yy_buffer, yy_startRead, yy_markedPos-yy_startRead );
   }
 
   /**
-   * Returns the length of the matched text region.
+   * @return The length of the matched text region.
    */
   final public int yylength() {
     return yy_markedPos-yy_startRead;
@@ -493,6 +495,8 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
   /**
    * Contains user EOF-code, which will be executed exactly once,
    * when the end of file is reached
+   * 
+   * @throws java.io.IOException if any kind of IO error occurs.
    */
   private void yy_do_eof() throws java.io.IOException {
     if (!yy_eof_done) {
@@ -507,7 +511,7 @@ class JrpcgenScanner implements org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanne
    * the end of input is encountered or an I/O-Error occurs.
    *
    * @return      the next token
-   * @exception   IOException  if any I/O-Error occurs
+   * @throws   java.io.IOException  if any kind of I/O-Error occurs
    */
   public org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Symbol next_token() throws java.io.IOException {
     int yy_input;

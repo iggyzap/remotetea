@@ -60,6 +60,9 @@ public class OncRpcUdpServerTransport extends OncRpcServerTransport {
      * @param version Version number of ONC/RPC program handled.
      * @param bufferSize Size of buffer for receiving and sending UDP/IP
      *   datagrams containing ONC/RPC call and reply messages.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcUdpServerTransport(OncRpcDispatchable dispatcher,
                                     int port,
@@ -89,6 +92,9 @@ public class OncRpcUdpServerTransport extends OncRpcServerTransport {
       *   programs and versions handled by this transport.
       * @param bufferSize Size of buffer for receiving and sending UDP/IP
       *   datagrams containing ONC/RPC call and reply messages.
+      * 
+      * @throws OncRpcException if an RPC error occurs.
+      * @throws IOException if an IO error occurs.
       */
      public OncRpcUdpServerTransport(OncRpcDispatchable dispatcher,
                                      int port,
@@ -115,6 +121,9 @@ public class OncRpcUdpServerTransport extends OncRpcServerTransport {
      *   programs and versions handled by this transport.
      * @param bufferSize Size of buffer for receiving and sending UDP/IP
      *   datagrams containing ONC/RPC call and reply messages.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcUdpServerTransport(OncRpcDispatchable dispatcher,
                                     InetAddress bindAddr,
@@ -234,6 +243,8 @@ public class OncRpcUdpServerTransport extends OncRpcServerTransport {
      * therefore calls {@link XdrDecodingStream#endDecoding} to free any
      * pending resources from the decoding stage.
      *
+     * @param call An XDR able object instance where to decode the call information in.
+     * 
      * @throws OncRpcException if an ONC/RPC exception occurs, like the data
      *   could not be successfully deserialized.
      * @throws IOException if an I/O exception occurs, like transmission

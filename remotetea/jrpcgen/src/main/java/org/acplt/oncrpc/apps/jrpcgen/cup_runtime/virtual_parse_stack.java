@@ -14,7 +14,7 @@ import java.util.Stack;
  *  modified).  Since parse ahead does not execute actions, only parse
  *  state is maintained on the virtual stack, not full Symbol objects.
  *
- * @see     java_cup.runtime.lr_parser
+ * @see     lr_parser
  * @version last updated: 7/3/96
  * @author  Frank Flannery
  */
@@ -24,7 +24,12 @@ public class virtual_parse_stack {
   /*--- Constructor(s) ----------------------------------------*/
   /*-----------------------------------------------------------*/
 
-  /** Constructor to build a virtual stack out of a real stack. */
+  /** Constructor to build a virtual stack out of a real stack.
+   *
+   * @param shadowing_stack The real stack.
+   * 
+   * @throws Exception if any error occurs.
+   */
   public virtual_parse_stack(Stack shadowing_stack) throws java.lang.Exception
     {
       /* sanity check */
@@ -95,7 +100,10 @@ public class virtual_parse_stack {
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** Indicate whether the stack is empty. */
+  /** Indicate whether the stack is empty.
+   * 
+   * @return <em>True</em> if the stack is empty, <em>false</em> otherwise.
+   */
   public boolean empty()
     {
       /* if vstack is empty then we were unable to transfer onto it and 
@@ -105,7 +113,12 @@ public class virtual_parse_stack {
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
       
-  /** Return value on the top of the stack (without popping it). */
+  /** Return value on the top of the stack (without popping it).
+   *
+   * @return The value on the top of the stack.
+   * 
+   * @throws Exception if this method has been called on an empty stack.
+   */
   public int top() throws java.lang.Exception
     {
       if (vstack.empty())
@@ -117,7 +130,10 @@ public class virtual_parse_stack {
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** Pop the stack. */
+  /** Pop the stack.
+   *
+   * @throws Exception if the stack is empty.
+   */
   public void pop() throws java.lang.Exception
     {
       if (vstack.empty())
@@ -134,7 +150,10 @@ public class virtual_parse_stack {
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** Push a state number onto the stack. */
+  /** Push a state number onto the stack.
+   *
+   * @param state_num The state that shall e pushed on the stack.
+   */
   public void push(int state_num)
     {
       vstack.push(new Integer(state_num));

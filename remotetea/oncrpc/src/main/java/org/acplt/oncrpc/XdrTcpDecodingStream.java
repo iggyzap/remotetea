@@ -45,6 +45,8 @@ public class XdrTcpDecodingStream extends XdrDecodingStream {
      * @param streamingSocket Socket from which XDR data is received.
      * @param bufferSize Size of packet buffer for storing received XDR
      *   data.
+     *   
+     * @throws IOException if the passed socket instance fails to provide an input stream.
      */
     public XdrTcpDecodingStream(Socket streamingSocket,
                                 int bufferSize)

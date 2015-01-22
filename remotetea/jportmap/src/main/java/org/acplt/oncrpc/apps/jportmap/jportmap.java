@@ -51,6 +51,9 @@ public class jportmap extends OncRpcServerStub
      * Create a new portmap instance, create the transport registration
      * information and UDP and TCP-based transports, which will be bound
      * later to port 111. The constructor does not start the dispatcher loop.
+     * 
+     * @throws OncRpcException in case of an RPC error.
+     * @throws IOException in case of an IO error.
      */
     public jportmap()
            throws OncRpcException, IOException {
@@ -358,6 +361,8 @@ public class jportmap extends OncRpcServerStub
      * usual overloaded <code>run()</code> method without any parameters,
      * but instead supply it the transports to handle. Registration and
      * deregistration is not necessary and not possible.
+     * 
+     * @param args An array containing the command line arguments.
      */
     public static void main(String[] args) {
         try {

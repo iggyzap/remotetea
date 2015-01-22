@@ -25,6 +25,7 @@
 package org.acplt.oncrpc.server;
 
 import org.acplt.oncrpc.*;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
@@ -63,6 +64,9 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
      * @param bufferSize Size of buffer used when receiving and sending
      *   chunks of XDR fragments over TCP/IP. The fragments built up to
      *   form ONC/RPC call and reply messages.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcTcpServerTransport(OncRpcDispatchable dispatcher,
                                     int port,
@@ -92,6 +96,9 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
      * @param bufferSize Size of buffer used when receiving and sending
      *   chunks of XDR fragments over TCP/IP. The fragments built up to
      *   form ONC/RPC call and reply messages.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcTcpServerTransport(OncRpcDispatchable dispatcher,
                                     int port,
@@ -118,6 +125,9 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
      * @param bufferSize Size of buffer used when receiving and sending
      *   chunks of XDR fragments over TCP/IP. The fragments built up to
      *   form ONC/RPC call and reply messages.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcTcpServerTransport(OncRpcDispatchable dispatcher,
                                     InetAddress bindAddr,
@@ -385,7 +395,7 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
     /**
      * Set the timeout used during transmission of data. If the flow of data
      * when sending calls or receiving replies blocks longer than the given
-     * timeout, an exception is thrown. The timeout must be > 0.
+     * timeout, an exception is thrown. The timeout must be &gt; 0.
      *
      * @param milliseconds Transmission timeout in milliseconds.
      */
@@ -485,6 +495,8 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
         /**
          * Add new transport to list of open transports. The new transport
          * is always added immediately after the head of the linked list.
+         * 
+         * @param o The transport which will be associated with new list node.
          */
         public void add(Object o) {
             Node node = new Node(o);
@@ -497,6 +509,10 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
 
         /**
          * Remove given transport from list of open transports.
+         * 
+         * @param o The transport to remove.
+         * 
+         * @return <em>True</em> if an entry with the given transport has been found and removed, <em>false</em> otherwise.
          */
         public boolean remove(Object o) {
             Node node = head.next;
@@ -514,6 +530,8 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
 
         /**
          * Removes and returns the first open transport from list.
+         * 
+         * @return The first transport of the actual list. 
          */
         public Object removeFirst() {
             //
@@ -562,6 +580,8 @@ public class OncRpcTcpServerTransport extends OncRpcServerTransport {
              * Create a new instance of a node object and let it reference
              * an open transport. The creator of this object is then
              * responsible for adding this node to the circular list itself.
+             * 
+             * @param item The transport to associate with the new node instance.
              */
             public Node(Object item) {
                 this.item = item;

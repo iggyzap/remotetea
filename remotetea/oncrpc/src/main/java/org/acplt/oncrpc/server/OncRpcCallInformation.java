@@ -117,6 +117,9 @@ public class OncRpcCallInformation {
      * makes sure that the deserialization process is properly finished after
      * the call parameters have been retrieved.
      *
+     * @param call An XDR able object where the parameters sent within an RPC call
+     *        message.
+     *        
      * @throws OncRpcException if an ONC/RPC exception occurs, like the data
      *   could not be successfully deserialized.
      * @throws IOException if an I/O exception occurs, like transmission

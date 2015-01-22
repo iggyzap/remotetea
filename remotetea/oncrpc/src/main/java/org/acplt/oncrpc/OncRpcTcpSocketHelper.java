@@ -48,17 +48,17 @@ import java.lang.reflect.*;
  * nothing or return fake information on old JRE plattforms. The number
  * after each method wrapper indicates the first JRE version supporting
  * a particular feature:
- * <li>
- *   <li>setSendBufferSize() -- 1.2
- *   <li>setReceiveBufferSize() -- 1.2
- * </li>
+ * <ul>
+ *   <li>setSendBufferSize() -- 1.2</li>
+ *   <li>setReceiveBufferSize() -- 1.2</li>
+ * </ul>
  *
  * <p>The following methods have been around since JDK&nbsp;1.1, so we
  * do not need to wrap them as we will never support JDK&nbsp;1.0 -- let
  * it rest in piece(s):
  * <ul>
- *   <li>getTcpNoDelay() / setTcpNoDelay()
- *   <li>getSoTimeout() / setSoTimeout()
+ *   <li>getTcpNoDelay() / setTcpNoDelay()</li>
+ *   <li>getSoTimeout() / setSoTimeout()</li>
  * </ul>
  *
  * <p>In order to support connect() timeouts before JDK&nbsp;1.4, there's
@@ -101,9 +101,14 @@ public class OncRpcTcpSocketHelper {
      * same time; but surely someone will soon pop up with a perfect
      * reason just to do so...
      *
+     * @param address The Java internet address representation of the remote
+     *        host to connect to.
+     * @param port The port number at the remote host to connect to. 
      * @param timeout Timeout in milliseconds for connection operation.
      *   A negative timeout leaves the exact timeout up to the particular
      *   JVM and java.net implementation.
+     *   
+     * @return A new socket instance connected to the specified host and port.
      *
      * @throws IOException with the message "connect interrupted" in case the
      *   timeout was reached before the connection could be established.
@@ -217,6 +222,9 @@ public class OncRpcTcpSocketHelper {
          * connect to the given TCP port at the host specified. Note that we
          * do not try to establish the connection yet; this has to be done
          * later using the {@link #run} method.
+         * 
+         * @param address The Java internet address representation of the remote host to connect to.
+         * @param port The port number at the remote host to connect to. 
          */
         public Connectiator(InetAddress address, int port) {
             this.address = address;

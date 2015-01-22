@@ -47,6 +47,9 @@ class JrpcgenParamInfo {
     /**
      * Constructs a new <code>JrpcgenParamInfo</code> object containing
      * information about ...
+     * 
+     * @param parameterType The type of the parameter.
+     * @param parameterName The name of the parameter.
      *
      */
     public JrpcgenParamInfo(String parameterType, String parameterName) {

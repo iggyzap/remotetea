@@ -185,6 +185,9 @@ public abstract class OncRpcServerTransport {
      * therefore calls {@link XdrDecodingStream#endDecoding} to free any
      * pending resources from the decoding stage.
      *
+     * @param call An XDR able object instance, where to decode the
+     *        call information in.
+     *         
      * @throws OncRpcException if an ONC/RPC exception occurs, like the data
      *   could not be successfully deserialized.
      * @throws IOException if an I/O exception occurs, like transmission

@@ -298,6 +298,8 @@ public class HttpClientConnection {
     /**
      * Ends the HTTP "POST" request. The next logical step for a caller is
      * then to call ... #FIXME
+     * 
+     * @throws IOException The post data of the post request could not be flushed.
      */
     public void endPostRequest()
            throws IOException {
@@ -367,6 +369,8 @@ public class HttpClientConnection {
      * same time.
      *
      * @return HTTP status code.
+     * 
+     * @throws IOException if an invalid HTTP header has been received.
      */
     private int readHeaders()
             throws IOException {
@@ -471,6 +475,8 @@ public class HttpClientConnection {
      *   is returned as the value string.
      *
      * @return <code>false</code> if the end of the headers has been reached.
+     * 
+     * @throws IOException IO error reading from the internal input stream.
      */
     private boolean readHeaderLine(String [] keyvalue)
             throws IOException {
@@ -595,6 +601,8 @@ public class HttpClientConnection {
      * it.
      *
      * @return Line without the terminating CR, LF or CRLF.
+     * 
+     * @throws IOException IO error reading from the internal input stream.
      */
     private String readLine()
             throws IOException {
@@ -656,6 +664,8 @@ public class HttpClientConnection {
      * or until the connection times out.
      *
      * @return HTTP server response code (status code).
+     * 
+     * @throws IOException Reading the HTTP header failed.
      */
     public int beginDecoding()
            throws IOException {
@@ -706,6 +716,8 @@ public class HttpClientConnection {
      * @param buffer Buffer to receive the content sent by the HTTP server.
      * @param offset Start offset in the buffer.
      * @param length Number of bytes to receive.
+     * 
+     * @return The number of bytes in total read.
      *
      * @exception ProtocolException if not enough content was available (the
      *   caller attempted to read more data than available) or if we received
@@ -946,6 +958,8 @@ public class HttpClientConnection {
      *
      * <p>This method silently discards any unread content, if the caller has
      * yet not read all content.
+     * 
+     * @throws IOException if reading remaining bytes fails. 
      */
     public void endDecoding()
            throws IOException {
@@ -1065,14 +1079,16 @@ public class HttpClientConnection {
     }
 
     /**
-     *
+     * Retrieve the response code of the last remote procedure call via HTTP.
+     * 
+     * @return The numbver of the response code. 
      */
     public int getResponseCode() {
         return responseCode;
     }
 
     /**
-     *
+     * @return <em>True</em> if the keep alive flag is set, <em>false</em> otherwise.
      */
     public boolean getKeepAlive() {
         return keepAlive;
@@ -1088,6 +1104,7 @@ public class HttpClientConnection {
      * @exception SecurityException if a security manager exists and its
      *     <code>checkConnect</code> method does not allow the connect
      *     operation.
+     * @throws IOException Creating and connecting a new socket failed, respectively.
      */
     private void connect()
             throws IOException {
@@ -1179,6 +1196,8 @@ public class HttpClientConnection {
      * Writes an ASCII string to the HTTP server (this is buffered first).
      *
      * @param s String to write.
+     * 
+     * @throws IOException Writing the passed string to the internal output stream failed.
      */
     private void write(String s)
             throws IOException {
@@ -1202,6 +1221,8 @@ public class HttpClientConnection {
      * CR followed by LF.
      *
      * @param s String to write.
+     * 
+     * @throws IOException Writing the passed string or the new line character to the internal output stream failed.
      */
     private void writeln(String s)
             throws IOException {
@@ -1388,16 +1409,21 @@ public class HttpClientConnection {
     class GetPropertyPrivilegedAction implements PrivilegedAction {
 
         /**
-         *
+         * 
+         * @param property The name of the property that shall be read from
+         *        the systems property map.
          */
         public GetPropertyPrivilegedAction(String property) {
             this.property = property;
         }
 
         /**
-         *
+         * 
+         * @param property The name of the property that shall be read from
+         *        the systems property map.
+         * @param defaultValue The default value of the property with passed name.
          */
-        public GetPropertyPrivilegedAction(String property, String defaultValue) {
+         public GetPropertyPrivilegedAction(String property, String defaultValue) {
             this.property = property;
             this.defaultValue = defaultValue;
         }

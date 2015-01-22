@@ -7,7 +7,7 @@
 		<version>1.1.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>remotetea-jportmap</artifactId>
-	<name>Remote Tea :: jportmap</name>
+	<name>Remote Tea : ONC/RPC port mapper</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.acplt</groupId>
@@ -15,4 +15,5 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
+	<description>A port mapper implementation required by ONC/RPC programs to register as service and to lookup registered services, respectively. </description>
 </project>

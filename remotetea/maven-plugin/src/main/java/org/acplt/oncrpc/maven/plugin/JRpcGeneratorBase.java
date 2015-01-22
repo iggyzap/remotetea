@@ -6,59 +6,37 @@ import java.io.IOException;
 import org.acplt.oncrpc.apps.jrpcgen.jrpcgen;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.Parameter;
+
 
 public abstract class JRpcGeneratorBase extends AbstractMojo
 {
     
-    /**
-     * @parameter expression=${jrpcgen.xFile}
-     */
+    @Parameter( required=true )
     protected java.io.File xFile;
     
-    /**
-     * @parameter expression=${jrpcgen.destDir}
-     */
+    @Parameter( required=true )
     protected java.io.File destDir;
     
-    /**
-     * @parameter expression=${jrpcgen.packageName}
-     */
+    @Parameter( required=true )
     protected String packageName;
 
-    /**
-     * @parameter expression=${jrpcgen.debug}
-     *              default-value=false
-     */
+    @Parameter( defaultValue="false" )
     protected boolean debug     = false;
     
-    /**
-     * @parameter expression=${jrpcgen.verbose}
-     *              default-value=false
-     */
+    @Parameter( defaultValue="false" )
     protected boolean verbose   = false;
     
-    /**
-     * @parameter expression=${jrpcgen.backup}
-     *              default-value=false
-     */
+    @Parameter( defaultValue="false" )
     protected boolean backup    = false;
     
-    /**
-     * @parameter expression=${jrpcgen.createDestDir}
-     *              default-value=false
-     */
+    @Parameter( defaultValue="false" )
     protected boolean createDir = false;
     
-    /**
-     * @parameter expression=${jrpcgen.serverTcpOnly}
-     *              default-value=false
-     */
+    @Parameter( defaultValue="false" )
     protected boolean serverTcpOnly = false;
     
-    /**
-     * @parameter expression=${jrpcgen.serverUdpOnly}
-     *              default-value=false
-     */
+    @Parameter( defaultValue="false" )
     protected boolean serverUdpOnly = false;
     
     protected JRpcGeneratorBase()

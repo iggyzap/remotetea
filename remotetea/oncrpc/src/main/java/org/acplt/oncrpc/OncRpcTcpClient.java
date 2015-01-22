@@ -475,7 +475,7 @@ public class OncRpcTcpClient extends OncRpcClient {
      * the ONC/RPC server. If the timeout expires,
      * {@link #call(int, XdrAble, XdrAble)} will raise a
      * {@link java.io.InterruptedIOException}. The default timeout value is
-     * 30 seconds (30,000 milliseconds). The timeout must be > 0.
+     * 30 seconds (30,000 milliseconds). The timeout must be &gt; 0.
      * A timeout of zero indicates a batched call, for which no reply message
      * is expected.
      *
@@ -489,7 +489,7 @@ public class OncRpcTcpClient extends OncRpcClient {
     /**
      * Set the timeout used during transmission of data. If the flow of data
      * when sending calls or receiving replies blocks longer than the given
-     * timeout, an exception is thrown. The timeout must be > 0.
+     * timeout, an exception is thrown. The timeout must be &gt; 0.
      *
      * @param milliseconds Transmission timeout in milliseconds.
      */

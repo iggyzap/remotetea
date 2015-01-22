@@ -49,8 +49,10 @@ public final class OncRpcServerAuthNone implements OncRpcServerAuth {
 
     /**
      * Decodes -- that is: deserializes -- an ONC/RPC authentication object
-     * (credential & verifier) on the server side.
+     * (credential &amp; verifier) on the server side.
      *
+     * @param xdr An XDR decoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -81,6 +83,8 @@ public final class OncRpcServerAuthNone implements OncRpcServerAuth {
      * Encodes -- that is: serializes -- an ONC/RPC authentication object
      * (its verifier) on the server side.
      *
+     * @param xdr An XDR encoding stream
+     *  
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

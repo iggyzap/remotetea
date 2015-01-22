@@ -103,6 +103,7 @@ import java.net.InetAddress;
  * following example, and print the list we got.
  *
  * <pre>
+ * {@code
  * OncRpcServerIdent [] list = null;
  * try {
  *     list = portmap.listServers();
@@ -113,6 +114,7 @@ import java.net.InetAddress;
  * for ( int i = 0; i < list.length; ++i ) {
  *     System.out.println(list[i].program + " " + list[i].version + " "
  *                        + list[i].protocol + " " + list[i].port);
+ * }
  * }
  * </pre>
  *
@@ -211,7 +213,7 @@ public class OncRpcPortmapClient {
     /**
      * Closes the connection to the portmapper.
      *
-     * @throws OncRpcException
+     * @throws OncRpcException An error occurred closing the connection to the port mapper.
      */
     public void close()
          throws OncRpcException {

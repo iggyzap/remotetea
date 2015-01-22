@@ -16,13 +16,13 @@
 	<property name="distDir" value="dist" />
 	
 	<property name="distVersion" value="1.1.1" />
-
+	
 	<target name="clean" description="cleans up all build artifacts">
 		<delete dir="${distDir}"/>
 		<delete dir="${javadocDir}"/>
 		<delete dir="${buildDir}"/>
 	</target>
-		
+	
 	<!-- -->
 	<!-- ** SF patch #943219: add compile target ** -->
 	<!-- Compile classes -->
@@ -103,17 +103,11 @@
 		<mkdir dir="${javadocDir}" />
 		<javadoc
 				destdir="${javadocDir}"
-				classpath="${buildDir}"
-				private="true"
 				author="on">
-			<fileset dir="oncrpc/${srcDir}">
-				<include name="**/*.java" />
-			</fileset>
-			<fileset dir="jrpcgen/${srcDir}">
-				<include name="**/*.java" />
-			</fileset>
-			<fileset dir="jportmap/${srcDir}">
-				<include name="**/*.java" />
+			<fileset dir=".">
+				<include name="oncrpc/${srcDir}/**/*.java" />
+				<include name="jrpcgen/${srcDir}/**/*.java" />
+				<include name="jportmap/${srcDir}/**/*.java" />
 			</fileset>
 			<package name="org.acplt.oncrpc" />
 			<package name="org.acplt.oncrpc.server" />
@@ -132,29 +126,30 @@
 		<!-- binary plus documentation distribution -->
 		<zip zipfile="${distDir}/remotetea-bin-doc-${distVersion}.zip">
 			<zipfileset dir="." prefix="remotetea/">
+				<include name="readme.html" />
+				<include name="changelog.html" />
+				<include name="docstyle.css" />
+				<include name="COPYING.LIB" />
 				<include name="${buildDir}/*.jar" />
 				<include name="${javadocDir}/" />
 			</zipfileset>
+		</zip>
+		<!-- source only distribution -->
+		<zip zipfile="${distDir}/remotetea-src-${distVersion}.zip">
 			<zipfileset dir="." prefix="remotetea/">
 				<include name="readme.html" />
 				<include name="changelog.html" />
 				<include name="docstyle.css" />
 				<include name="COPYING.LIB" />
 				<include name="build.xml" />
-			</zipfileset>
-		</zip>
-		<!-- source only distribution -->
-		<zip zipfile="${distDir}/remotetea-src-${distVersion}.zip">
-			<zipfileset dir="." prefix="remotetea/">
-				<include name=".project" />
-				<include name=".classpath" />
-				<include name="readme.html" />
-				<include name="changelog.html" />
-				<include name="docstyle.css" />
-				<include name="COPYING.LIB" />
-			</zipfileset>
-			<zipfileset dir="." prefix="remotetea/">
-				<include name="${srcDir}/" />
+				<include name="oncrpc/" />
+				<include name="jrpcgen/" />
+				<include name="jportmap/" />
+				<include name="${testSrcDir}/" />
+				<exclude name="**/.settings/" />
+				<exclude name="**/.project" />
+				<exclude name="**/.classpath" />
+				<exclude name="**/pom.xml" />
 			</zipfileset>
 		</zip>
 	</target>

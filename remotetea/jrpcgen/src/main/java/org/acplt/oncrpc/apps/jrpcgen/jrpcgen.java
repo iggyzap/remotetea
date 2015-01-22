@@ -444,6 +444,9 @@ public class jrpcgen {
     /**
      * Dump the value of a constant and optionally first dump all constants
      * it depends on.
+     * 
+     * @param out The print writer where the output shall go in.
+     * @param c The constant definition to dump.
      */
     public static void dumpConstantAndDependency(PrintWriter out, JrpcgenConst c) {
         //
@@ -602,6 +605,8 @@ public class jrpcgen {
      * NOTE: "opaque" is considered like "byte" to be a base type...
      * FIXME: char/byte?
      *
+     * @param type The name of an XDR base type
+     * 
      * @return Name of Java base data type or <code>null</code> if the
      *   given data type is not equivalent to one of Java's base data
      *   types.
@@ -720,6 +725,11 @@ public class jrpcgen {
 
     /**
      * Return en- or decoding method appropriate for a struct or union member.
+     * 
+     * @param decl The declaration of an XDR struct or union.
+     * @param encode Indicates whether to return the encoding or the decoding method.
+     * 
+     * @return The encoding or decoding method depending on the given parameter <em>encode</em>.
      */
     public static String codingMethod(JrpcgenDeclaration decl, boolean encode) {
     	return codingMethod(decl, encode, null);
@@ -734,6 +744,8 @@ public class jrpcgen {
      *   <code>false</code> if decoding method is to be returned.
      * @param oref name of object reference or <code>null</code> if
      *   "this" should be used instead.
+     *   
+     * @return The encoding or decoding method depending on the given parameter <em>encode</em>.
      */
     public static String codingMethod(JrpcgenDeclaration decl, boolean encode,
                                         String oref) {
@@ -1764,6 +1776,8 @@ public class jrpcgen {
      * Generate source code for the client stub proxy object. This client
      * stub proxy object is then used by client applications to make remote
      * procedure (aka method) calls to an ONC/RPC server.
+     * 
+     * @param programInfo The information on the defined RPC program. 
      */
     public static void dumpClient(JrpcgenProgramInfo programInfo) {
         //
@@ -1925,7 +1939,8 @@ public class jrpcgen {
     }
 
     /**
-     *
+     * @param out The print writer where the output shall go in.
+     * @param proc The information of the procedure to dump.
      */
     public static void dumpServerStubMethodCall(PrintWriter out,
                                                 JrpcgenProcedureInfo proc) {
@@ -2139,6 +2154,9 @@ public class jrpcgen {
      * Generate public abstract method signatures for all remote procedure
      * calls. This ensures that they have to be implemented before any
      * derived server class gets usefull.
+     * 
+     * @param out The print writer where the output shall go in.
+     * @param versionInfo The cersion information on the RPC program.
      */
     public static void dumpServerStubMethods(PrintWriter out,
                                              JrpcgenVersionInfo versionInfo) {
@@ -2182,7 +2200,7 @@ public class jrpcgen {
     }
 
     /**
-     *
+     * @param programInfo The information on the RPC program.
      */
     public static void dumpServer(JrpcgenProgramInfo programInfo) {
         //
@@ -2364,6 +2382,8 @@ public class jrpcgen {
 
     /**
      * The main part of jrpcgen where all things start.
+     * 
+     * @param args A string array containing the command line arguments passed on invocation. 
      */
     public static void main(String[] args) {
         //
@@ -2516,6 +2536,9 @@ public class jrpcgen {
     /**
      * The real parsing and code generation part. This has been factored out
      * of main() in order to make it available as an Ant task.
+     * 
+     * @throws FileNotFoundException if the specified x-file does not exist or cannot be opened for reading.
+     * @throws Exception if any kind of error like a parser error occurs.
      */
     public static void doParse()
            throws FileNotFoundException, Exception {

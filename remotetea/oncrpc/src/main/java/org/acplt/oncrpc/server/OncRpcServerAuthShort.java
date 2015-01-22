@@ -49,6 +49,8 @@ public final class OncRpcServerAuthShort implements OncRpcServerAuth {
 
     /**
      * Returns the shorthand credential sent by the caller.
+     * 
+     * @return A byte array containing the shorthand credential.
      */
     public final byte [] getShorthandCred() {
         return shorthandCred;
@@ -60,6 +62,8 @@ public final class OncRpcServerAuthShort implements OncRpcServerAuth {
      * ONC/RPC calls. If you don't set the verifier or set it to
      * <code>null</code>, then the verifier returned to the caller will be
      * of type <code>AUTH_NONE</code>.
+     * 
+     * @param shorthandVerf A byte array containing the shorthand verifier.
      */
     public final void setShorthandVerifier(byte [] shorthandVerf) {
         this.shorthandVerf = shorthandVerf;
@@ -67,6 +71,8 @@ public final class OncRpcServerAuthShort implements OncRpcServerAuth {
 
     /**
      * Returns the shorthand verifier to be sent back to the caller.
+     * 
+     * @return A byte array containing the shorthand verifier.
      */
     public final byte [] getShorthandVerifier() {
         return shorthandVerf;
@@ -74,8 +80,10 @@ public final class OncRpcServerAuthShort implements OncRpcServerAuth {
 
     /**
      * Decodes -- that is: deserializes -- an ONC/RPC authentication object
-     * (credential & verifier) on the server side.
+     * (credential &amp; verifier) on the server side.
      *
+     * @param xdr An XDR decoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -113,6 +121,8 @@ public final class OncRpcServerAuthShort implements OncRpcServerAuth {
      * Encodes -- that is: serializes -- an ONC/RPC authentication object
      * (its verifier) on the server side.
      *
+     * @param xdr An XDR encoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

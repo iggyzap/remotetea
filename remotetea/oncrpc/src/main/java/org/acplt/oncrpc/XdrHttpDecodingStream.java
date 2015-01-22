@@ -193,6 +193,9 @@ public class XdrHttpDecodingStream extends XdrDecodingStream {
     /**
      * Receives more encoded data over the HTTP connection and decodes it into
      * octets, making them available through the <code>buffer</code> field.
+     * 
+     * @throws OncRpcException Decoding of the received 64base encoded stream failed.
+     * @throws IOException IO error reading the underlying byte stream.
      */
     private void fill()
             throws OncRpcException, IOException {

@@ -57,6 +57,8 @@ public abstract class OncRpcClientStub {
      * @param host Host address where the desired ONC/RPC server resides.
      * @param program Program number of the desired ONC/RPC server.
      * @param version Version number of the desired ONC/RPC server.
+     * @param port port number at which the ONC/RPC server is listening
+     *        for interested clients.
      * @param protocol {@link OncRpcProtocols Protocol} to be used for
      *   ONC/RPC calls. This information is necessary, so port lookups through
      *   the portmapper can be done.
@@ -78,6 +80,9 @@ public abstract class OncRpcClientStub {
      *
      * @param client ONC/RPC client proxy object implementing a particular
      *   IP protocol.
+     *   
+     * @throws OncRpcException if an ONC/RPC error occurs.
+     * @throws IOException if an I/O error occurs.
      */
     public OncRpcClientStub(OncRpcClient client)
            throws OncRpcException, IOException {

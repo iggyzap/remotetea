@@ -17,7 +17,10 @@ public class JrpcgenParser extends org.acplt.oncrpc.apps.jrpcgen.cup_runtime.lr_
   /** Default constructor. */
   public JrpcgenParser() {super();}
 
-  /** Constructor which sets the default scanner. */
+  /** Constructor which sets the default scanner.
+   *
+   * @param s An instance of the jrpcgen cup runtime scanner implementation.
+   */
   public JrpcgenParser(org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Scanner s) {super(s);}
 
   /** Production table. */
@@ -348,12 +351,25 @@ public class JrpcgenParser extends org.acplt.oncrpc.apps.jrpcgen.cup_runtime.lr_
 class CUP$JrpcgenParser$actions {
   private final JrpcgenParser parser;
 
-  /** Constructor */
+  /** Constructor
+   * 
+   * @param parser The instance of an RPC parser supplying user action action code. 
+   */
   CUP$JrpcgenParser$actions(JrpcgenParser parser) {
     this.parser = parser;
   }
 
-  /** Method with the actual generated action code. */
+  /** Method with the actual generated action code.
+   *
+   * @param CUP$JrpcgenParser$act_num Number of the action.
+   * @param CUP$JrpcgenParser$parser The underlying parser instance.
+   * @param CUP$JrpcgenParser$stack The underlying parser stack.
+   * @param CUP$JrpcgenParser$top Index of the stack element, at which parsing actually is stopped.
+   * 
+   * @return The extracted symbol.
+   * 
+   * @throws Exception if any kind of error occurs.
+   */
   public final org.acplt.oncrpc.apps.jrpcgen.cup_runtime.Symbol CUP$JrpcgenParser$do_action(
     int                        CUP$JrpcgenParser$act_num,
     org.acplt.oncrpc.apps.jrpcgen.cup_runtime.lr_parser CUP$JrpcgenParser$parser,

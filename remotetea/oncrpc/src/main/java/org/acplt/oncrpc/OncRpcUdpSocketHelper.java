@@ -35,17 +35,17 @@ import java.lang.reflect.*;
  * nothing or return fake information on old JRE plattforms. The number
  * after each method wrapper indicates the first JRE version supporting
  * a particular feature:
- * <li>
- *   <li>setSendBufferSize() -- 1.2
- *   <li>setReceiveBufferSize() -- 1.2
- * </li>
+ * <ul>
+ *   <li>setSendBufferSize() -- 1.2</li>
+ *   <li>setReceiveBufferSize() -- 1.2</li>
+ * </ul>
  *
  * <p>The following methods have been around since JDK&nbsp;1.1, so we
  * do not need to wrap them as we will never support JDK&nbsp;1.0 -- let
  * it rest in piece(s):
  * <ul>
- *   <li>getTcpNoDelay() / setTcpNoDelay()
- *   <li>getSoTimeout() / setSoTimeout()
+ *   <li>getTcpNoDelay() / setTcpNoDelay()</li>
+ *   <li>getSoTimeout() / setSoTimeout()</li>
  * </ul>
  *
  * @version $Header: /home/harald/repos/remotetea.sf.net/remotetea/src/org/acplt/oncrpc/OncRpcUdpSocketHelper.java,v 1.3 2007/05/29 19:45:46 haraldalbrecht Exp $
@@ -56,6 +56,8 @@ public class OncRpcUdpSocketHelper {
     /**
      * Creates a datagram socket and binds it to an arbitrary available port
      * on the local host machine.
+     * 
+     * @param socket A datagram socket instance
      */
     public OncRpcUdpSocketHelper(DatagramSocket socket) {
         this.socket = socket;

@@ -76,6 +76,8 @@ public class OncRpcServerReplyMessage extends OncRpcReplyMessage {
      * Encodes -- that is: serializes -- a ONC/RPC reply header object
      * into a XDR stream.
      *
+     * @param xdr An XDR encoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

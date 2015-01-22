@@ -6,5 +6,6 @@
     <version>1.1.1-SNAPSHOT</version>
   </parent>
   <artifactId>remotetea-oncrpc</artifactId>
-  <name>Remote Tea :: oncrpc</name>
+  <name>Remote Tea : ONC/RPC runtime</name>
+  <description>The runtime environment for ONC/RPC programs based on Remote Tea.</description>
 </project>

@@ -61,6 +61,9 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
      *   form ONC/RPC call and reply messages.
      * @param parent Parent server transport which created us.
      * @param transmissionTimeout Inherited transmission timeout.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcTcpConnectionServerTransport(OncRpcDispatchable dispatcher,
                                               Socket socket,
@@ -92,6 +95,9 @@ public class OncRpcTcpConnectionServerTransport extends OncRpcServerTransport {
      *   form ONC/RPC call and reply messages.
      * @param parent Parent server transport which created us.
      * @param transmissionTimeout Inherited transmission timeout.
+     * 
+     * @throws OncRpcException if an RPC error occurs.
+     * @throws IOException if an IO error occurs.
      */
     public OncRpcTcpConnectionServerTransport(OncRpcDispatchable dispatcher,
                                               Socket socket,

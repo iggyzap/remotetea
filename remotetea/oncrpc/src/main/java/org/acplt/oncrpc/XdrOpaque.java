@@ -44,6 +44,8 @@ public class XdrOpaque implements XdrAble {
 
     /**
      * Constructs and initializes a new <code>XdrOpaque</code> object.
+     * 
+     * @param value A byte array containing the initial opaque data.
      */
     public XdrOpaque(byte [] value) {
         this.value = value;

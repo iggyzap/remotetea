@@ -77,6 +77,8 @@ public final class OncRpcServerAuthUnix implements OncRpcServerAuth {
      * Sets shorthand verifier to be sent back to the caller. The caller then
      * can use this shorthand verifier as the new credential with the next
      * ONC/RPC calls to speed up things up (hopefully).
+     * 
+     * @param shorthandVerf A byte array containing the shorthand verifier.
      */
     public final void setShorthandVerifier(byte [] shorthandVerf) {
         this.shorthandVerf = shorthandVerf;
@@ -84,6 +86,8 @@ public final class OncRpcServerAuthUnix implements OncRpcServerAuth {
 
     /**
      * Returns the shorthand verifier to be sent back to the caller.
+     * 
+     * @return The byte array containing the shorthand verifier.
      */
     public final byte [] getShorthandVerifier() {
         return shorthandVerf;
@@ -91,8 +95,10 @@ public final class OncRpcServerAuthUnix implements OncRpcServerAuth {
 
     /**
      * Decodes -- that is: deserializes -- an ONC/RPC authentication object
-     * (credential & verifier) on the server side.
+     * (credential &amp; verifier) on the server side.
      *
+     * @param xdr An XDR decoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -145,6 +151,8 @@ public final class OncRpcServerAuthUnix implements OncRpcServerAuth {
      * Encodes -- that is: serializes -- an ONC/RPC authentication object
      * (its verifier) on the server side.
      *
+     * @param xdr An XDR encoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */

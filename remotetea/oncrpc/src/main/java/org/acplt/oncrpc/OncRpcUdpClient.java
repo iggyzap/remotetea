@@ -642,7 +642,7 @@ public class OncRpcUdpClient extends OncRpcClient {
      * Set the retransmission timout for remote procedure calls to wait for
      * an answer from the ONC/RPC server before resending the call. The
      * default retransmission timeout is the 30 seconds. The retransmission
-     * timeout must be > 0. To disable retransmission of lost calls, set
+     * timeout must be &gt; 0. To disable retransmission of lost calls, set
      * the retransmission timeout to be the same value as the timeout.
      *
      * @param milliseconds Timeout in milliseconds. A timeout of zero indicates

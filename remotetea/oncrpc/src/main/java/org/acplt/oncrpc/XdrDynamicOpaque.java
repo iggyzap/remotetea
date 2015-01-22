@@ -51,6 +51,8 @@ public class XdrDynamicOpaque implements XdrAble {
 
     /**
      * Constructs and initializes a new <code>XdrDynamicOpaque</code> object.
+     * 
+     * @param value A dynamic byte array containing opaque data.
      */
     public XdrDynamicOpaque(byte [] value) {
         this.value = value;

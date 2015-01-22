@@ -26,6 +26,13 @@ public class Symbol {
   Constructor for l,r values
  *******************************/
 
+    /**
+     * 
+     * @param id Id of the symbol type
+     * @param l Left position of the symbol in the original input file
+     * @param r Right position of the symbol in the original input file
+     * @param o Lexical value of the symbol
+     */
   public Symbol(int id, int l, int r, Object o) {
     this(id);
     left = l;
@@ -37,6 +44,11 @@ public class Symbol {
   Constructor for no l,r values
 ********************************/
 
+  /**
+   * 
+   * @param id Id of the symbol type
+   * @param o Lexical value of the symbol
+   */
   public Symbol(int id, Object o) {
     this(id, -1, -1, o);
   }
@@ -45,6 +57,12 @@ public class Symbol {
   Constructor for no value
   ***************************/
 
+  /**
+   * 
+   * @param id Id of the symbool type
+   * @param l Left position of the symbol in the original input file
+   * @param r Right position of the symbol in the original input file
+   */
   public Symbol(int id, int l, int r) {
     this(id, l, r, null);
   }
@@ -53,6 +71,10 @@ public class Symbol {
   Constructor for no value or l,r
 ***********************************/
 
+  /**
+   * 
+   * @param sym_num Number (aka Id) of the symbol type 
+   */
   public Symbol(int sym_num) {
     this(sym_num, -1);
     left = -1;
@@ -63,6 +85,11 @@ public class Symbol {
 /***********************************
   Constructor to give a start state
 ***********************************/
+  /**
+   * 
+   * @param sym_num Number (aka id) of the symbol type
+   * @param state Initial state
+   */
   Symbol(int sym_num, int state)
     {
       sym = sym_num;
@@ -95,6 +122,10 @@ public class Symbol {
   /*****************************
     Printing this token out. (Override for pretty-print).
     ****************************/
+  
+  /**
+   * @return The string representation of the symbol.
+   */
   public String toString() { return "#"+sym; }
 }
 

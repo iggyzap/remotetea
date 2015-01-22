@@ -215,7 +215,7 @@ import java.net.InetAddress;
  * client.setAuth(auth);
  * </pre>
  *
- * The {@link OncRpcClientAuthUnix authentication <code>AUTH_UNIX</code>} will
+ * The {@link OncRpcClientAuthUnix} authentication <code>AUTH_UNIX</code> will
  * handle shorthand credentials (of type <code>AUTH_SHORT</code>) transparently.
  * If you do not set any authentication object after creating an ONC/RPC client
  * object, <code>AUTH_NONE</code> is used automatically.
@@ -261,6 +261,7 @@ public abstract class OncRpcClient {
      * @param host Host address where the desired ONC/RPC server resides.
      * @param program Program number of the desired ONC/RPC server.
      * @param version Version number of the desired ONC/RPC server.
+     * @param port port number of the listening server component.
      * @param protocol {@link OncRpcProtocols Protocol} to be used for
      *   ONC/RPC calls. This information is necessary, so port lookups through
      *   the portmapper can be done.
@@ -319,6 +320,8 @@ public abstract class OncRpcClient {
      * @param version Version number of the desired ONC/RPC server.
      * @param protocol {@link OncRpcProtocols Protocol} to be used for
      *   ONC/RPC calls.
+     *   
+     * @return A new instance of a concrete specialisation of class {@link OncRpcClient}.
      *
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
@@ -342,6 +345,8 @@ public abstract class OncRpcClient {
      *   be contacted to find out the port.
      * @param protocol {@link OncRpcProtocols Protocol} to be used for
      *   ONC/RPC calls.
+     *
+     * @return A new instance of a concrete specialisation of class {@link OncRpcClient}.
      *
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
@@ -420,11 +425,11 @@ public abstract class OncRpcClient {
            throws OncRpcException;
 
     /**
-     * Set the timout for remote procedure calls to wait for an answer from
+     * Set the timeout for remote procedure calls to wait for an answer from
      * the ONC/RPC server. If the timeout expires,
      * {@link #call(int, XdrAble, XdrAble)} will raise a
      * {@link java.io.InterruptedIOException}. The default timeout value is
-     * 30 seconds (30,000 milliseconds). The timeout must be > 0.
+     * 30 seconds (30,000 milliseconds). The timeout must be &gt; 0.
      * A timeout of zero indicated batched calls, for which no reply message
      * is expected.
      *

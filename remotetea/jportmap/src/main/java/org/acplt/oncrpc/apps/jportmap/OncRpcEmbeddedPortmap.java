@@ -52,6 +52,9 @@ public class OncRpcEmbeddedPortmap {
      * then returns.
      *
      * @see OncRpcEmbeddedPortmap#embeddedPortmapInUse
+     * 
+     * @throws OncRpcException in case of an RPC error.
+     * @throws IOException in case of an IO error.
      */
     public OncRpcEmbeddedPortmap()
            throws OncRpcException, IOException {
@@ -70,6 +73,9 @@ public class OncRpcEmbeddedPortmap {
      *   that no portmap service is currently available.
      *
      * @see OncRpcEmbeddedPortmap#embeddedPortmapInUse
+     * 
+     * @throws OncRpcException in case of an RPC error.
+     * @throws IOException in cas of an IO error.
      */
     public OncRpcEmbeddedPortmap(int checkTimeout)
            throws OncRpcException, IOException {
@@ -190,6 +196,9 @@ public class OncRpcEmbeddedPortmap {
 
         /**
          * Creates a new instance of an embeddable portmap service.
+         * 
+         * @throws IOException if any kind of IO error occurs.
+         * @throws OncRpcException if any kind of RPC error occurs.
          */
         public embeddedjportmap() throws IOException, OncRpcException { }
 
@@ -248,6 +257,8 @@ public class OncRpcEmbeddedPortmap {
          * Construct a new embedded portmap service thread and associate
          * it with the portmap object to be used as the service. The service
          * is not started yet.
+         * 
+         * @param portmap An instance of an embedded port mapper.
          */
         public OncRpcEmbeddedPortmapThread(embeddedjportmap portmap) {
             super("embedded portmap service thread");

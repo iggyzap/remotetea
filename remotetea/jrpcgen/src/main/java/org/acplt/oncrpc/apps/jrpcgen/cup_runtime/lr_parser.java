@@ -44,7 +44,7 @@ import java.util.Stack;
  *  invoke various pieces of user supplied code, provide access to certain
  *  special Symbols (e.g., EOF and error), etc.  Specifically, the following
  *  abstract methods are normally supplied by generated code:
- *  <dl compact>
+ *  <dl>
  *  <dt> short[][] production_table()
  *  <dd> Provides a reference to the production table (indicating the index of
  *       the left hand side non terminal and the length of the right hand side
@@ -105,9 +105,9 @@ import java.util.Stack;
  *         report_fatal_error("Couldn't repair and continue parse", null);
  *  </dl>
  *
- * @see     java_cup.runtime.Symbol
- * @see     java_cup.runtime.Symbol
- * @see     java_cup.runtime.virtual_parse_stack
+ * @see     Symbol
+ * @see     Symbol
+ * @see     virtual_parse_stack
  * @version last updated: 7/3/96
  * @author  Frank Flannery
  */
@@ -124,7 +124,10 @@ public abstract class lr_parser {
       /* nothing to do here */
     }
 
-  /** Constructor that sets the default scanner. [CSA/davidm] */
+  /** Constructor that sets the default scanner. [CSA/davidm]
+   *
+   * @param s The default scanner for the new parser instance.
+   */
   public lr_parser(Scanner s) {
     this(); /* in case default constructor someday does something */
     setScanner(s);
@@ -142,7 +145,9 @@ public abstract class lr_parser {
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
   /** The number of Symbols after an error we much match to consider it 
-   *  recovered from. 
+   *  recovered from.
+   *  
+   *  @return The number of symbols after an error.
    */
   protected int error_sync_size() {return _error_sync_size; }
 
@@ -155,7 +160,9 @@ public abstract class lr_parser {
    *  the negative-encoded values (reduce actions) in the action_table.  
    *  Each entry has two parts, the index of the non-terminal on the 
    *  left hand side of the production, and the number of Symbols 
-   *  on the right hand side. 
+   *  on the right hand side.
+   *  
+   *  @return The production table.
    */
   public abstract short[][] production_table();
 
@@ -173,7 +180,9 @@ public abstract class lr_parser {
    *  state shifted to).  Reduces are encoded as negative values (one less 
    *  than the production reduced by).  Error entries are denoted by zero. 
    * 
-   * @see java_cup.runtime.lr_parser#get_action
+   * @see lr_parser#get_action(int, int)
+   * 
+   * @return The action table.
    */
   public abstract short[][] action_table();
 
@@ -190,30 +199,43 @@ public abstract class lr_parser {
    *  then indexed by that state and the LHS of the reducing production to 
    *  indicate where to "shift" to. 
    *
-   * @see java_cup.runtime.lr_parser#get_reduce
+   * @see lr_parser#get_reduce(int, int)
+   * 
+   * @return The reduce table.
    */
   public abstract short[][] reduce_table();
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** The index of the start state (supplied by generated subclass). */
+  /** The index of the start state (supplied by generated subclass).
+   * 
+   * @return The start state.
+   */
   public abstract int start_state();
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** The index of the start production (supplied by generated subclass). */
+  /** The index of the start production (supplied by generated subclass).
+   *
+   * @return The index of the start production
+   */
   public abstract int start_production();
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
   /** The index of the end of file terminal Symbol (supplied by generated 
    *  subclass). 
+   *  
+   *  @return The index of the end of file terminal Symbol
    */
   public abstract int EOF_sym();
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** The index of the special error Symbol (supplied by generated subclass). */
+  /** The index of the special error Symbol (supplied by generated subclass).
+   * 
+   * @return The index of the special error Symbol
+   */
   public abstract int error_sym();
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
@@ -274,11 +296,15 @@ public abstract class lr_parser {
 
   /**
    * Simple accessor method to set the default scanner.
+   * 
+   * @param s The default scanner to set.
    */
   public void setScanner(Scanner s) { _scanner = s; }
 
   /**
    * Simple accessor method to get the default scanner.
+   * 
+   * @return The default scanner.
    */
   public Scanner getScanner() { return _scanner; }
 
@@ -294,6 +320,10 @@ public abstract class lr_parser {
    * @param parser    the parser object we are acting for.
    * @param stack     the parse stack of that object.
    * @param top       the index of the top element of the parse stack.
+   * 
+   * @return The parsed symbol
+   * 
+   * @throws Exception if any error occurs.
    */
   public abstract Symbol do_action(
     int       act_num, 
@@ -310,6 +340,8 @@ public abstract class lr_parser {
    *  might need this and we perform no action.   This method is normally
    *  overridden by the generated code using this contents of the "init with"
    *  clause as its body.
+   *  
+   *  @throws Exception if any error occurs.
    */
   public void user_init() throws java.lang.Exception { }
 
@@ -317,7 +349,9 @@ public abstract class lr_parser {
 
   /** Initialize the action object.  This is called before the parser does
    *  any parse actions. This is filled in by generated code to create
-   *  an object that encapsulates all action code. 
+   *  an object that encapsulates all action code.
+   *  
+   *  @throws Exception if any error occurs.
    */ 
   protected abstract void init_actions() throws java.lang.Exception;
 
@@ -330,6 +364,10 @@ public abstract class lr_parser {
    *  can be overriden by the generated parser using the code declared in
    *  the "scan with" clause.  Do not recycle objects; every call to
    *  scan() should return a fresh object.
+   *  
+   *  @return The scanned symbol.
+   *  
+   *  @throws Exception if any error occurs.
    */
   public Symbol scan() throws java.lang.Exception {
     Symbol sym = getScanner().next_token();
@@ -345,6 +383,8 @@ public abstract class lr_parser {
    *
    * @param message an error message.
    * @param info    an extra object reserved for use by specialized subclasses.
+   * 
+   * @throws Exception if any error occurs.
    */
   public void report_fatal_error(
     String   message, 
@@ -402,6 +442,8 @@ public abstract class lr_parser {
    *  has been unsuccessful.  Here in the base class we report a fatal error. 
    *
    * @param cur_token the current lookahead Symbol.
+   * 
+   * @throws Exception if any error occurs.
    */
   public void unrecovered_syntax_error(Symbol cur_token)
     throws java.lang.Exception
@@ -420,6 +462,8 @@ public abstract class lr_parser {
    *
    * @param state the state index of the action being accessed.
    * @param sym   the Symbol index of the action being accessed.
+   * 
+   * @return The index of the action identified by the passed state and symbol.
    */
   protected final short get_action(int state, int sym)
     {
@@ -475,6 +519,9 @@ public abstract class lr_parser {
    *
    * @param state the state index of the entry being accessed.
    * @param sym   the Symbol index of the entry being accessed.
+   * 
+   * @return The associated index in the reduce table to the given pair of
+   *         state and symbol.
    */
   protected final short get_reduce(int state, int sym)
     {
@@ -506,6 +553,10 @@ public abstract class lr_parser {
    *  accepted, or a fatal error has been reported).  See the header 
    *  documentation for the class regarding how shift/reduce parsers operate
    *  and how the various tables are used.
+   *  
+   *  @return The parsed symbol.
+   *  
+   *  @throws Exception if any error occurs.
    */
   public Symbol parse() throws java.lang.Exception
     {
@@ -691,7 +742,11 @@ public abstract class lr_parser {
   /** Perform a parse with debugging output.  This does exactly the
    *  same things as parse(), except that it calls debug_shift() and
    *  debug_reduce() when shift and reduce moves are taken by the parser
-   *  and produces various other debugging messages.  
+   *  and produces various other debugging messages.
+   *  
+   *  @return The parsed symbol.
+   *  
+   *  @throws Exception if any error occurs.
    */
   public Symbol debug_parse()
     throws java.lang.Exception
@@ -835,6 +890,10 @@ public abstract class lr_parser {
    *  normal parser to continue with the overall parse.
    *
    * @param debug should we produce debugging messages as we parse.
+   * 
+   * @return <em>True</em> on success, <em>false</em> otherwise.
+   * 
+   * @throws Exception if any error occurs.
    */
   protected boolean error_recovery(boolean debug)
     throws java.lang.Exception
@@ -893,7 +952,10 @@ public abstract class lr_parser {
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
   /** Determine if we can shift under the special error Symbol out of the 
-   *  state currently on the top of the (real) parse stack. 
+   *  state currently on the top of the (real) parse stack.
+   *  
+   *   @return <em>True</em> if we can shift under the special error symbol,
+   *           <em>false</em> otherwise.
    */
   protected boolean shift_under_error()
     {
@@ -909,6 +971,8 @@ public abstract class lr_parser {
    *  the stack we return false 
    *
    * @param debug should we produce debugging messages as we parse.
+   * 
+   * @return <em>True</em> if a suitable state exists, <em>false</em> otherwise.
    */
   protected boolean find_recovery_config(boolean debug)
     {
@@ -969,7 +1033,9 @@ public abstract class lr_parser {
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
   /** Read from input to establish our buffer of "parse ahead" lookahead 
-   *  Symbols. 
+   *  Symbols.
+   *  
+   *  @throws Exception if any error occurs.
    */
   protected void read_lookahead() throws java.lang.Exception
     {
@@ -989,13 +1055,17 @@ public abstract class lr_parser {
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** Return the current lookahead in our error "parse ahead" buffer. */
+  /** Return the current lookahead in our error "parse ahead" buffer.
+   * 
+   * @return The current lookahead in our error "parse ahead" buffer.
+   */
   protected Symbol cur_err_token() { return lookahead[lookahead_pos]; }
 
   /*. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .*/
 
-  /** Advance to next "parse ahead" input Symbol. Return true if we have 
-   *  input to advance to, false otherwise. 
+  /** Advance to next "parse ahead" input Symbol. 
+   *  
+   *  @return <em>True</em> if we have input to advance to, <em>false</em> otherwise.
    */
   protected boolean advance_lookahead()
     {
@@ -1010,6 +1080,8 @@ public abstract class lr_parser {
 
   /** Reset the parse ahead input to one Symbol past where we started error 
    *  recovery (this consumes one new Symbol from the real input). 
+   *  
+   *  @throws Exception if any error occurs.
    */
   protected void restart_lookahead() throws java.lang.Exception
     {
@@ -1039,6 +1111,10 @@ public abstract class lr_parser {
    *  actions.
    *
    * @param debug should we produce debugging messages as we parse.
+   * 
+   * @return <em>True</em> on success, <em>false</em> otherwise.
+   * 
+   * @throws Exception if any error occurs.
    */
   protected boolean try_parse_ahead(boolean debug)
     throws java.lang.Exception
@@ -1110,6 +1186,8 @@ public abstract class lr_parser {
    *  This returns once we have consumed all the stored input or we accept.
    *
    * @param debug should we produce debugging messages as we parse.
+   * 
+   * @throws Exception if any error occurs.
    */
   protected void parse_lookahead(boolean debug)
     throws java.lang.Exception
@@ -1216,7 +1294,12 @@ public abstract class lr_parser {
 
   /*-----------------------------------------------------------*/
 
-  /** Utility function: unpacks parse tables from strings */
+  /** Utility function: unpacks parse tables from strings
+   *
+   * @param sa A string array containing the parse tables.
+   * 
+   * @return The unpacked table.
+   */
   protected static short[][] unpackFromStrings(String[] sa)
     {
       // Concatanate initialization strings.

@@ -129,6 +129,9 @@ public interface OncRpcDispatchable {
     * @param procedure Procedure number requested.
     *
     * @see OncRpcCallInformation
+    * 
+    * @throws OncRpcException if the passed request cannot be served for some reason such as a unknown procedure number.
+    * @throws IOException if for some reason an IO error occurs serving the request.
     */
     public void dispatchOncRpcCall(OncRpcCallInformation call,
                                    int program, int version, int procedure)

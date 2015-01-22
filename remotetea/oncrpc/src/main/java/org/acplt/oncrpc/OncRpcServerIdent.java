@@ -76,6 +76,11 @@ public class OncRpcServerIdent implements XdrAble {
      * Constructs an <code>OncRpcServerIdent</code> object with the
      * requested program number, version number, protocol type and port
      * number.
+     * 
+     * @param program Program number of the RPC program
+     * @param version Version number of the RPC program
+     * @param protocol Protocol type (transport mapping) used for the RPC communication
+     * @param port Port number the RPC server is listening for clients
      */
     public OncRpcServerIdent(int program, int version,
                              int protocol, int port) {
@@ -88,6 +93,11 @@ public class OncRpcServerIdent implements XdrAble {
     /**
      * Constructs an <code>OncRpcServerIdent</code> object and restores
      * its state from the given XDR stream.
+     * 
+     * @param xdr An XDR decoding stream
+     * 
+     * @throws OncRpcException Decoding the identifiers of the RPC server failed.
+     * @throws IOException IO error reading bytes from the XDR stream.
      */
     public OncRpcServerIdent(XdrDecodingStream xdr)
            throws OncRpcException, IOException {
@@ -98,6 +108,8 @@ public class OncRpcServerIdent implements XdrAble {
      * Encodes -- that is: serializes -- an OncRpcServerIdent object
      * into a XDR stream.
      *
+     * @param xdr An XDR encoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
@@ -113,6 +125,8 @@ public class OncRpcServerIdent implements XdrAble {
      * Decodes -- that is: deserializes -- an OncRpcServerIdent object
      * from a XDR stream.
      *
+     * @param xdr An XDR decoding stream
+     * 
      * @throws OncRpcException if an ONC/RPC error occurs.
      * @throws IOException if an I/O error occurs.
      */
