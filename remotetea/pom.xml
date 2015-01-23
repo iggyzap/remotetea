@@ -11,8 +11,8 @@
 	<url>http://sourceforge.net/projects/remotetea/</url>
 	<licenses>
 		<license>
-			<name>GNU Lesser General Public License</name>
-			<url>http://www.gnu.org/licenses/lgpl.html</url>
+			<name>GNU Library General Public License (LGPL), Version 2.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-2.0.html</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -101,6 +101,15 @@
 		</profile>
 	</profiles>
 	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}</directory>
+				<targetPath>META-INF</targetPath>
+				<includes>
+					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -110,6 +119,11 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.4</version>
 			</plugin>
 		</plugins>
 	</build>
