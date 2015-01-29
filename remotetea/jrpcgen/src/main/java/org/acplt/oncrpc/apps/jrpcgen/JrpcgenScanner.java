@@ -19,7 +19,7 @@
  * GNU Library General Public License for more details.
  *
  * You should have received a copy of the GNU Library General Public
- * License along with this program (see the file COPYING.LIB for more
+ * License along with this program (see the file LICENSE.txt for more
  * details); if not, write to the Free Software Foundation, Inc.,
  * 675 Mass Ave, Cambridge, MA 02139, USA.
  */

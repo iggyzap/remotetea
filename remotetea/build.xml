@@ -129,7 +129,7 @@
 				<include name="readme.html" />
 				<include name="changelog.html" />
 				<include name="docstyle.css" />
-				<include name="COPYING.LIB" />
+				<include name="LICENSE.txt" />
 				<include name="${buildDir}/*.jar" />
 				<include name="${javadocDir}/" />
 			</zipfileset>
@@ -140,7 +140,7 @@
 				<include name="readme.html" />
 				<include name="changelog.html" />
 				<include name="docstyle.css" />
-				<include name="COPYING.LIB" />
+				<include name="LICENSE.txt" />
 				<include name="build.xml" />
 				<include name="oncrpc/" />
 				<include name="jrpcgen/" />
