@@ -14,6 +14,7 @@
 	<property name="testSrcDir" value="src" />
 	<property name="javadocDir" value="javadoc" />
 	<property name="distDir" value="dist" />
+	<property name="infoDir" value="information/src/main/resources/META-INF" />
 	
 	<property name="distVersion" value="1.1.1" />
 	
@@ -30,6 +31,8 @@
 		<mkdir dir="${buildDir}"/>
 		<javac
 				destdir="${buildDir}"
+				source="1.5"
+				target="1.5"
 				debug="true"
 				deprecation="true"
 				optimize="true">
@@ -125,11 +128,8 @@
 		<mkdir dir="${distDir}"/>
 		<!-- binary plus documentation distribution -->
 		<zip zipfile="${distDir}/remotetea-bin-doc-${distVersion}.zip">
+			<zipfileset dir="${infoDir}" prefix="remotetea/" />
 			<zipfileset dir="." prefix="remotetea/">
-				<include name="readme.html" />
-				<include name="changelog.html" />
-				<include name="docstyle.css" />
-				<include name="LICENSE.txt" />
 				<include name="${buildDir}/*.jar" />
 				<include name="${javadocDir}/" />
 			</zipfileset>
@@ -137,19 +137,18 @@
 		<!-- source only distribution -->
 		<zip zipfile="${distDir}/remotetea-src-${distVersion}.zip">
 			<zipfileset dir="." prefix="remotetea/">
-				<include name="readme.html" />
-				<include name="changelog.html" />
-				<include name="docstyle.css" />
-				<include name="LICENSE.txt" />
 				<include name="build.xml" />
+				<include name="pom.xml" />
 				<include name="oncrpc/" />
 				<include name="jrpcgen/" />
 				<include name="jportmap/" />
+				<include name="maven-plugin/" />
+				<include name="information/" />
 				<include name="${testSrcDir}/" />
+				<exclude name="**/target/" />
 				<exclude name="**/.settings/" />
 				<exclude name="**/.project" />
 				<exclude name="**/.classpath" />
-				<exclude name="**/pom.xml" />
 			</zipfileset>
 		</zip>
 	</target>

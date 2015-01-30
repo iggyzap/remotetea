@@ -1,7 +1,6 @@
 /*
  * Copyright (c) 2014, 2015
- * NDE AG
- * D-22455 Hamburg, Germany.
+ * NDE Netzdesign und -entwicklung AG, Hamburg, Germany
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify

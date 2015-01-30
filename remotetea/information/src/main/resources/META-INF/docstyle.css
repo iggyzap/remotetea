@@ -99,6 +99,10 @@ p.revision {
   text-indent: 0em;
 }
 
+dl {
+  line-height: 1.3;
+  margin: 1em 0 1em 2em;
+}
 
 /* Use french quotes */
 q {

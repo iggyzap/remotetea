@@ -15,5 +15,26 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
-	<description>A port mapper implementation required by ONC/RPC programs to register as service and to lookup registered services, respectively. </description>
+	<description>A port mapper implementation required by ONC/RPC programs to register as service and to lookup registered services, respectively.</description>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-remote-resources-plugin</artifactId>
+				<version>1.5</version>
+				<configuration>
+					<resourceBundles>
+						<resourceBundle>org.acplt.remotetea:remotetea-information:${project.version}</resourceBundle>
+					</resourceBundles>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

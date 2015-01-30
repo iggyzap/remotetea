@@ -23,19 +23,43 @@
 	</scm>
 	<developers>
 		<developer>
-			<id>haraldalbrecht</id>
-			<name>Harald Albrecht</name>
-			<email>haraldalbrecht@users.sourceforge.net</email>
+			<id>jmozdzen</id>
+			<name>Jens-U. Mozdzen</name>
+			<email>jmozdzen@nde.ag</email>
+			<organization>NDE Netzdesign und -entwicklung AG, Hamburg, Germany</organization>
+			<organizationUrl>http://nde.ag</organizationUrl>
+			<roles>
+				<role>administrator</role>
+				<role>developer</role>
+			</roles>
 		</developer>
 		<developer>
 			<id>hwirths</id>
 			<name>Harald Wirths</name>
 			<email>hwirths@nde.ag</email>
-			<organization>NDE AG</organization>
+			<organization>NDE Netzdesign und -entwicklung AG, Hamburg, Germany</organization>
 			<organizationUrl>http://nde.ag</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>haraldalbrecht</id>
+			<name>Harald Albrecht</name>
+			<roles>
+				<role>original contributor</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>nlotz</id>
+			<name>Nikolas Lotz</name>
+			<roles>
+				<role>former contributor</role>
+			</roles>
 		</developer>
 	</developers>
 	<modules>
+		<module>information</module>
 		<module>oncrpc</module>
 		<module>jrpcgen</module>
 		<module>jportmap</module>
@@ -101,15 +125,6 @@
 		</profile>
 	</profiles>
 	<build>
-		<resources>
-			<resource>
-				<directory>${project.basedir}</directory>
-				<targetPath>META-INF</targetPath>
-				<includes>
-					<include>LICENSE.txt</include>
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -127,4 +142,4 @@
 			</plugin>
 		</plugins>
 	</build>
-</project>
+</project> 

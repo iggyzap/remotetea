@@ -10,8 +10,28 @@
 
 <h1>Change Log <q>Remote Tea</q></h1>
 
-<p><a class="ext" href="http://remotetea.sourceforge.net">Remote Tea
+<p><a class="ext" href="http://sourceforge.net/projects/remotetea/">Remote Tea
 Project Home Page</a> on SourceForge.</p>
+
+<h2>Version 1.1.1:</h2>
+
+<p>This is a minor maintenance release.</p>
+
+<h3>Reorganization of the project</h3>
+
+<p>The project has been converted into a Maven project. It has become a multi-module project,
+containing the modules <span class="product">oncrpc</span>, <span class="product">jrpcgen</span>,
+<span class="product">jportmap</span>, <span class="product">maven-plugin</span> and
+<span class="product">information</span>. The transition into a Maven project intends on:</p>
+
+<ul>
+  <li><span>separating the project into its modules.</span></li>
+  <li><span>deploying it to Maven central.</span></li>
+  <li><span>introducing a Maven plugin for generating Java sources out of an x-file within the Maven life cycle phase <em>generate-sources</em>.</span></li>
+</ul>
+
+<p>However, the Ant-Build of Remote Tea is still supported and will at least get in charge
+to create the release zip files, which will be continued to be uploaded to SourceForge.</p>
 
 <h2>Version 1.1.0:</h2>
 

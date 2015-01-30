@@ -6,16 +6,9 @@
 		<artifactId>remotetea</artifactId>
 		<version>1.1.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>remotetea-jrpcgen</artifactId>
-	<name>Remote Tea : ONC/RPC source generator</name>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.ant</groupId>
-			<artifactId>ant</artifactId>
-			<version>1.9.4</version>
-		</dependency>
-	</dependencies>
-	<description>The source generator for ONC/RPC programs analogous to <em>rpcgen</em> of Sun.</description>
+	<artifactId>remotetea-information</artifactId>
+	<name>Remote Tea : Project Information</name>
+	<description>Project information such as the license and the change log.</description>
 	<build>
 		<plugins>
 			<plugin>
@@ -23,14 +16,16 @@
 				<artifactId>maven-remote-resources-plugin</artifactId>
 				<version>1.5</version>
 				<configuration>
-					<resourceBundles>
-						<resourceBundle>org.acplt.remotetea:remotetea-information:${project.version}</resourceBundle>
-					</resourceBundles>
+					<includes>
+						<include>META-INF${file.separator}*.txt</include>
+						<include>META-INF${file.separator}*.html</include>
+						<include>META-INF${file.separator}*.css</include>
+					</includes>
 				</configuration>
 				<executions>
 					<execution>
 						<goals>
-							<goal>process</goal>
+							<goal>bundle</goal>
 						</goals>
 					</execution>
 				</executions>
