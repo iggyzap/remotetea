@@ -16,6 +16,11 @@
             <artifactId>remotetea-oncrpc</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>remotetea-jportmap</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 
