@@ -1,7 +1,6 @@
-/target/
-/.settings/
-/classes/
-/dist/
-/javadoc/
-/.project
-/.classpath
+target
+.settings
+.project
+.classpath
+.idea
+*.im?

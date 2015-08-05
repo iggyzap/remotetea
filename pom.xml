@@ -64,6 +64,7 @@
 		<module>jrpcgen</module>
 		<module>jportmap</module>
 		<module>maven-plugin</module>
+		<module>integration-tests</module>
 	</modules>
 	<distributionManagement>
 		<repository>
